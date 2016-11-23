@@ -6,8 +6,16 @@ const router = express.Router()
 let db = require(__dirname + '/../modules/database')
 
 router.route('/logout')
+	// when logout is requested
 	.get((req, res) => {
-		res.send('route works')
+		// destroy session
+		req.session.destroy( (err) => {
+			if(err) {
+				throw err;
+			}
+			// redirect to log in page and show message
+			res.redirect('/?message=' + encodeURIComponent("Successfully logged out"));
+		})
 	})
 
 // module.exports says: the current file when required will send back this thing
