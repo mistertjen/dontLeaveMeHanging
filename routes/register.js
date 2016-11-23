@@ -8,6 +8,9 @@ const router = express.Router()
 let db = require(__dirname + '/../modules/database')
 
 router.route('/register')
+	.get((req, res) => {
+		res.render('registerlogin')
+	})
 	.post((req, res) => {
 		// checks if a field is empty, then redirects with message
 		if(!req.body.name || !req.body.email || !req.body.password || !req.body.confirmPassword){
@@ -49,14 +52,14 @@ router.route('/register')
 							}
 						}).then( (user) => {
 							// compare (hashed) typed in password, with (hashed) stored password of this user
-							bcrypt.compare(password, user.password, (err, res) => {
+							bcrypt.compare(password, user.password, (err, result) => {
 								if(err) {
 									throw err;
 								// if user exists and (hashed) filled in password matches (hashed) password in db
-								} else if (user !== null && res === true) {
+								} else if (user !== null && result === true) {
 									// start session and redirect to index
 									req.session.user = user;
-									res.redirect('/index');
+									res.redirect('/');
 								}
 							})
 						})
