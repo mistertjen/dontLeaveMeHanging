@@ -8,7 +8,12 @@ const bcrypt = require('bcrypt')
 
 router.route('/profile')
 	.get((req, res) => {
-		res.render('profile')
+		// needs active session
+		res.render('profile', {user:req.session.user})
+		
+		// TEST with this:
+		// db.User.findById(1)
+		// .then(user => res.render('profile', {user:user}))
 	})
 
 router.route('/profile/changeEmail')
