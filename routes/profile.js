@@ -26,7 +26,8 @@ router.route('/profile/changeEmail')
 					// id: 1
 				}
 			})
-			res.redirect('/profile?message=Email successfully changed.')
+			.then(x => res.redirect('/profile?message=Email successfully changed.'))
+			.catch(x => res.redirect('/profile?message=Emailaddress already exists.'))
 		}
 	})
 
