@@ -28,10 +28,27 @@ app.use(session({
 
 console.log('server config is set')
 
-//=ROUTERS GO HERE
+// require routes
+const registerRouter = require(__dirname + '/routes/register')
+const loginRouter = require(__dirname + '/routes/login')
+const logoutRouter = require(__dirname + '/routes/logout')
+const indexRouter = require(__dirname + '/routes/index')
+const profileRouter = require(__dirname + '/routes/profile')
+const askhfRouter = require(__dirname + '/routes/askhf')
+const givehfRouter = require(__dirname + '/routes/givehf')
+const timerRouter = require(__dirname + '/routes/timer')
+const successRouter = require(__dirname + '/routes/success')
 
-
-
+// use routes
+app.use('/', registerRouter)
+app.use('/', loginRouter)
+app.use('/', logoutRouter)
+app.use('/', indexRouter)
+app.use('/', profileRouter)
+app.use('/', askhfRouter)
+app.use('/', givehfRouter)
+app.use('/', timerRouter)
+app.use('/', successRouter)
 
 
 app.listen(8000)
