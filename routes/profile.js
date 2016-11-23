@@ -26,7 +26,7 @@ router.route('/profile/changeEmail')
 					// id: 1
 				}
 			})
-			res.redirect('profile?message=Email successfully changed.')
+			res.redirect('/profile?message=Email successfully changed.')
 		}
 	})
 
