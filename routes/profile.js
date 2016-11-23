@@ -7,7 +7,27 @@ let db = require(__dirname + '/../modules/database')
 
 router.route('/profile')
 	.get((req, res) => {
-		res.send('route works')
+		res.render('profile')
+	})
+
+router.route('/profile/changeEmail')
+	.post((req, res) => {
+		if (req.body.email !== req.body.email2) {res.redirect('/profile?message=Email doesn\'t match.')}
+		else if (req.body.email) {
+			db.User.update({
+				email: req.body.email
+			}, {
+				where: {
+					// Doesn't work until sessions
+					username: req.session.user.name,
+					id: req.session.user.id
+
+					// Test with this:
+					// id: 1
+				}
+			})
+			res.redirect('profile?message=Email successfully changed.')
+		}
 	})
 
 // module.exports says: the current file when required will send back this thing
