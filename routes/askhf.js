@@ -7,7 +7,7 @@ let db = require(__dirname + '/../modules/database')
 
 router.route('/askhf')
 	.get((req, res) => {
-		res.send('route works')
+		res.render('index')
 	})
 
 // module.exports says: the current file when required will send back this thing
