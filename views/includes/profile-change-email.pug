@@ -1,0 +1,8 @@
+div.change-email-container
+	h4 New email
+	form(name='newEmail' method='POST' action='/profile/changeEmail')
+		input(name='email' id='email1' type='email')
+		label(for='email') New email
+		input(name='email2' id='email2' type='email')
+		label(for='email2') Confirm new email
+		input(type='submit' value='Confirm')
