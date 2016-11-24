@@ -1,4 +1,5 @@
 const express = require('express')
+const request = require('request')
 // create a router
 const router = express.Router()
 
@@ -7,42 +8,51 @@ let db = require(__dirname + '/../modules/database')
 
 router.route('/askhf')
 	// test if button shows
-	// .get((req, res) => {
-	// 	res.render('index')
-	// })
+	.get((req, res) => {
+		res.render('index')
+	})
 	// When submit button for don't leave me hanging is clicked on index
 	.post((req, res) => {
-		// get location
-		let location = "unknown"
+		// // get location
+		// let location = "unknown"
+		// // if browser doesn't support geolocation
+		// if (!navigator.geolocation){
+		// 	location = "Location is secret";
+		// 	return;
+		// }
+		// // if browser does support geolocation
+		// function success(position) {
+		// 	let latitude  = position.coords.latitude;
+		// 	let longitude = position.coords.longitude;
 
-		if (!navigator.geolocation){
-			location = "Location is secret";
-			return;
-		}
-
-		function success(position) {
-			let latitude  = position.coords.latitude;
-			let longitude = position.coords.longitude;
-
-		    let locationURL = "http://maps.googleapis.com/maps/api/geocode/json?latlng=" + latitude + "," + longitude + "&sensor=true";
+		//     let locationURL = "http://maps.googleapis.com/maps/api/geocode/json?latlng=" + latitude + "," + longitude + "&sensor=true";
 		    
-		    // Make GET request to locationURL
-		    // Save in variable e.g. unparsedData
+		//     // Make GET request to locationURL
+		//     // Save in variable e.g. unparsedData
 
-		    // Parse the data like this:
+		 
+		//     	let unparsedData = data;
+		//     	let parsedData = JSON.parse(unparsedData);
+		//     	let city = parsedData.results[0].address_components[3].long_name
+		//     	let country = parsedData.results[0].address_components[6].long_name
+		//     	location = city + ', ' + country
+		    
+
+		//     // Parse the data like this:
 			
-			// let parsedData = JSON.parse(unparsedData)
-			// let city = parsedData.results[0].address_components[3].long_name
-			// let country = parsedData.results[0].address_components[6].long_name
+		// 	// let parsedData = JSON.parse(unparsedData)
+		// 	// let city = parsedData.results[0].address_components[3].long_name
+		// 	// let country = parsedData.results[0].address_components[6].long_name
 
-			// location = city + ', ' + country
-		  }
+		// 	// location = city + ', ' + country
+		//   }
+		//   // if error
+		//   function error() {
+		//     location = "Location is secret";
+		//   }
 
-		  function error() {
-		    location = "Location is secret";
-		  }
-
-		  navigator.geolocation.getCurrentPosition(success, error);
+		//   navigator.geolocation.getCurrentPosition(success, error);
+		console.log(req.body.latitude + ', ' + req.body.longitude)
 	})
 
 // module.exports says: the current file when required will send back this thing
