@@ -13,20 +13,10 @@ router.route('/askhf')
 	})
 	// When submit button for don't leave me hanging is clicked on index
 	.post((req, res) => {
-		// // get location
-		// let location = "unknown"
-		// // if browser doesn't support geolocation
-		// if (!navigator.geolocation){
-		// 	location = "Location is secret";
-		// 	return;
-		// }
-		// // if browser does support geolocation
-		// function success(position) {
-		// 	let latitude  = position.coords.latitude;
-		// 	let longitude = position.coords.longitude;
-
-		//     let locationURL = "http://maps.googleapis.com/maps/api/geocode/json?latlng=" + latitude + "," + longitude + "&sensor=true";
-		    
+		if(req.body.location != 'unknown') {
+			// use google maps api to find all data about the coordinates in a json object
+			let locationURL = "http://maps.googleapis.com/maps/api/geocode/json?latlng=" + req.body.location + "&sensor=true";
+		}
 		//     // Make GET request to locationURL
 		//     // Save in variable e.g. unparsedData
 
@@ -52,7 +42,7 @@ router.route('/askhf')
 		//   }
 
 		//   navigator.geolocation.getCurrentPosition(success, error);
-		console.log(req.body.latitude + ', ' + req.body.longitude)
+		console.log(req.body.location)
 	})
 
 // module.exports says: the current file when required will send back this thing

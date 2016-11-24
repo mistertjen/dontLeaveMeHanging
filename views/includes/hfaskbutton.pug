@@ -1,4 +1,4 @@
 //- when button is clicked post request to askhf which creates high five
-form(action='/askhf' method='POST')
+form#hfaskform(action='/askhf' method='POST')
 	//- navigator is front-end function so getlocation must be done here, and posted to server
-	button(type='submit' onclick="validateLocation()") Don't leave me hanging
+	button#hfaskbutton(type='submit') Don't leave me hanging
