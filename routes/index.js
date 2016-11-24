@@ -7,7 +7,12 @@ let db = require(__dirname + '/../modules/database')
 
 router.route('/')
 	.get((req, res) => {
-		res.send('route works')
+		let user = req.session.user;
+		if(user){
+			res.render('index')
+		} else {
+			res.render('registerlogin')
+		}
 	})
 
 // redirect to root if someone goes to /index

@@ -13,36 +13,48 @@ router.route('/askhf')
 	})
 	// When submit button for don't leave me hanging is clicked on index
 	.post((req, res) => {
-		if(req.body.location != 'unknown') {
-			// use google maps api to find all data about the coordinates in a json object
+		// if location is coordinates and not the string 'unknown'
+		if(req.body.location != 'unknown,unknown') {
+			// use google maps api to show all data about the coordinates in a json object on this url
 			let locationURL = "http://maps.googleapis.com/maps/api/geocode/json?latlng=" + req.body.location + "&sensor=true";
+		
+			// Make GET request to locationURL
+    		// Save in variable e.g. unparsedData
+			request(locationURL, (error, response, body) => {
+			  if (!error && response.statusCode == 200) {
+			  	// body is html of the url, in this case because of api only json object
+			    let unparsedData = body;
+			    // parse json data into javascript object
+				let parsedData = JSON.parse(unparsedData);
+				// store city and location from object
+				let city = parsedData.results[0].address_components[3].long_name
+				let country = parsedData.results[0].address_components[6].long_name
+				// store location
+				let location = city + ', ' + country
+				console.log(location)
+
+				// create hfask with this location
+				db.HFAsk.create({
+					location: location,
+					// add userId with id of the user of this session, added to session object after login/registering app.get('/')
+					userId: req.session.user.id
+				})
+				.then( () => {
+					res.redirect('/timer')
+				})
+			  }
+			})
+		} else {
+			// create hfask with 'unknown' as location
+			db.HFAsk.create({
+				location: 'secret location',
+				// add userId with id of the user of this session, added to session object after login/registering app.get('/')
+				userId: req.session.user.id
+			})
+			.then( () => {
+				res.redirect('/timer')
+			})
 		}
-		//     // Make GET request to locationURL
-		//     // Save in variable e.g. unparsedData
-
-		 
-		//     	let unparsedData = data;
-		//     	let parsedData = JSON.parse(unparsedData);
-		//     	let city = parsedData.results[0].address_components[3].long_name
-		//     	let country = parsedData.results[0].address_components[6].long_name
-		//     	location = city + ', ' + country
-		    
-
-		//     // Parse the data like this:
-			
-		// 	// let parsedData = JSON.parse(unparsedData)
-		// 	// let city = parsedData.results[0].address_components[3].long_name
-		// 	// let country = parsedData.results[0].address_components[6].long_name
-
-		// 	// location = city + ', ' + country
-		//   }
-		//   // if error
-		//   function error() {
-		//     location = "Location is secret";
-		//   }
-
-		//   navigator.geolocation.getCurrentPosition(success, error);
-		console.log(req.body.location)
 	})
 
 // module.exports says: the current file when required will send back this thing

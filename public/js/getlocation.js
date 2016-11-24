@@ -48,6 +48,8 @@ $('#hfaskform').submit(function () {
             type: 'hidden',
             name: 'location',
             value: latitude + ',' + longitude
+            // test else statement askhf.js
+            // value: 'unknown,unknown'
         })
     })
 });
