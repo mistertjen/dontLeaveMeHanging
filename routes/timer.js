@@ -7,6 +7,11 @@ let db = require(__dirname + '/../modules/database')
 
 router.route('/timer')
 	.get((req, res) => {
+		res.render('timer')
+	})
+
+router.route('/timer/HFAskTime')
+	.get((req, res) => {
 		db.HFAsk.findOne({
 			where: {
 				// needs active session
@@ -16,16 +21,12 @@ router.route('/timer')
 				userId: 1
 			}
 		})
-
 		.then(HFAsk => {
-			let UTCTime =  Date.parse(HFAsk.dataValues.updatedAt);
-			res.render('timer', {
-				HFAskTime: UTCTime
-			})
+			let UTCTime = HFAsk.dataValues.updatedAt;
+			res.send(UTCTime)
+		})
 	})
 
-		// res.send('route works')
-	})
 
 // module.exports says: the current file when required will send back this thing
 // router refers to variable router = object with all router-routes in it
