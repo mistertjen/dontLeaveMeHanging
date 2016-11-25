@@ -9,7 +9,7 @@ let db = require(__dirname + '/../modules/database')
 
 router.route('/register')
 	.get((req, res) => {
-		res.render('registerlogin')
+		res.redirect('/')
 	})
 	.post((req, res) => {
 		// checks if a field is empty, then redirects with message
