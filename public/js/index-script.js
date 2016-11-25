@@ -10,6 +10,7 @@ if($('#index')) {
 	let userlocation = ''
 	// disable hfaskbutton, because first location should be known + should only enable when you don't already have one hanging
 	disableButton('hfaskbutton')
+	disableButton('hfgivebutton')
 	locationFunc.getLocation()
 	// is getLocation klaar && en hangt er niet al eentje
 	// dan enable button (HFAsk)
@@ -19,4 +20,5 @@ if($('#index')) {
 
 	// event listener function: when submit is clicked for #hfaskform
 	locationFunc.submitLocation('#hfaskform')
+	locationFunc.submitLocation('#hfgiveform')
 }

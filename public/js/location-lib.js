@@ -8,6 +8,7 @@ const locationFunc = {
 			// declared without let so now a global variable
 			userlocation  = 'unknown';
 			document.getElementById("hfaskbutton").disabled = false;
+			document.getElementById("hfgivebutton").disabled = false;
 		}
 		// if browser does support geolocation
 		function success(position) {
@@ -15,11 +16,13 @@ const locationFunc = {
 			userlocation  = position.coords.latitude + ',' + position.coords.longitude;
 			//userloc = 'hallo'
 			document.getElementById("hfaskbutton").disabled = false;
+			document.getElementById("hfgivebutton").disabled = false;
 		}
 		// if error
 		function error() {
 			userlocation  = 'unknown';
 			document.getElementById("hfaskbutton").disabled = false;
+			document.getElementById("hfgivebutton").disabled = false;
 		}
 		// call getCurrentPosition
 		navigator.geolocation.getCurrentPosition(success, error);
