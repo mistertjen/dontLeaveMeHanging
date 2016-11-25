@@ -36,12 +36,13 @@ router.route('/givehf')
 				// test
 				// console.log(location)
 
-				// create hfask with this location
+				// create hfgive with this location
 				db.HFGive.create({
 					location: location,
 					// add userId with id of the user of this session, added to session object after login/registering app.get('/')
 					userId: req.session.user.id
 				})
+				// send result: new hfgive object to the then, so you can reach it in it's nested then
 				.then((hfgive)=>{
 					db.HFAsk.findOne ({
 						where: {
@@ -54,15 +55,20 @@ router.route('/givehf')
 									}
 							}
 						}
-					}).then((hfask) => {
-						console.log(hfgive)
+					})
+					// nested in findOne-then, so it can reach the hfgive id just created through hfgive.dataValues.id
+					// send result of findone, so you can update this specific one
+					.then((hfask) => {
+						// because you gave the whole found hfask as an object, don't use db.HFAsk.update, but hfask.update (only this specific one just found)
 						hfask.update({
+							// give it the id of the hfgive you just created
 							hfgiveId: hfgive.dataValues.id
 						})
 					})
 				})
 				.then( () => {
-					res.redirect('/')
+					// there's a match so redirect to /success
+					res.redirect('/success')
 				})
 			  }
 			})
@@ -72,10 +78,34 @@ router.route('/givehf')
 				location: 'secret location',
 				// add userId with id of the user of this session, added to session object after login/registering app.get('/')
 				userId: req.session.user.id
-///////////// what here???
+			})
+			// send result: new hfgive object to the then, so you can reach it in it's nested then
+			.then((hfgive)=>{
+				db.HFAsk.findOne ({
+					where: {
+						 //find first one which hasn't been matched yet to a hfgive
+							hfgiveId : null,
+						 $and: {
+							userId: {
+									// AND is not your own hfask
+									$not: req.session.user.id
+								}
+						}
+					}
+				})
+				// nested in findOne-then, so it can reach the hfgive id just created through hfgive.dataValues.id
+				// send result of findone, so you can update this specific one
+				.then((hfask) => {
+					// because you gave the whole found hfask as an object, don't use db.HFAsk.update, but hfask.update (only this specific one just found)
+					hfask.update({
+						// give it the id of the hfgive you just created
+						hfgiveId: hfgive.dataValues.id
+					})
+				})
 			})
 			.then( () => {
-				res.redirect('/')
+				// there's a match so redirect to /success
+				res.redirect('/success')
 			})
 		}
 	})
