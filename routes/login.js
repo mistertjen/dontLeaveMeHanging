@@ -43,7 +43,7 @@ router.route('/login')
 							res.redirect('/');
 						} else {
 							// redirect to login page and say name or password is incorrect 
-							res.redirect('/?message=' + encodeURIComponent("Invalid name or password"));
+							res.redirect('/?message=' + encodeURIComponent("Invalid email or password"));
 						}
 					}
 				})
