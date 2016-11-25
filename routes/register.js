@@ -38,17 +38,17 @@ router.route('/register')
 						email: 		req.body.email,
 						// store hashed password 
 						password: 	hash
-						// catch when name isn't unique, redirect without adding to table users
+						// catch when email isn't unique, redirect without adding to table users
 					}).catch( (err) => {
-						res.redirect('/?message=' + encodeURIComponent("Your username is already taken, please choose a new name"));
+						res.redirect('/?message=' + encodeURIComponent("Your email is already taken, please register with another email"));
 						throw err
 					})
-					// when name is unique
+					// when email is unique
 					.then( () => {
 						// check if newly registered user exists in table users
 						db.User.findOne({
 							where: {
-								name: req.body.name
+								email: req.body.email
 							}
 						}).then( (user) => {
 							// compare (hashed) typed in password, with (hashed) stored password of this user
