@@ -7,7 +7,17 @@ let db = require(__dirname + '/../modules/database')
 
 router.route('/success')
 	.get((req, res) => {
-		res.send('route works')
+		db.HFAsk.findOne({
+			where: {
+				hfgiveId: true
+			}
+		})
+		.then(x => {
+			res.send('success!!!')
+		})
+		.catch(x => {
+			res.send('')
+		})
 	})
 
 // module.exports says: the current file when required will send back this thing
