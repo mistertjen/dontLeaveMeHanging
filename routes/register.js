@@ -9,7 +9,7 @@ let db = require(__dirname + '/../modules/database')
 
 router.route('/register')
 	.get((req, res) => {
-		res.render('registerlogin')
+		res.redirect('/')
 	})
 	.post((req, res) => {
 		// checks if a field is empty, then redirects with message
@@ -38,31 +38,16 @@ router.route('/register')
 						email: 		req.body.email,
 						// store hashed password 
 						password: 	hash
-						// catch when name isn't unique, redirect without adding to table users
+						// catch when email isn't unique, redirect without adding to table users
 					}).catch( (err) => {
-						res.redirect('/?message=' + encodeURIComponent("Your username is already taken, please choose a new name"));
+						res.redirect('/?message=' + encodeURIComponent("Your email is already taken, please register with another email"));
 						throw err
 					})
-					// when name is unique
-					.then( () => {
-						// check if newly registered user exists in table users
-						db.User.findOne({
-							where: {
-								name: req.body.name
-							}
-						}).then( (user) => {
-							// compare (hashed) typed in password, with (hashed) stored password of this user
-							bcrypt.compare(password, user.password, (err, result) => {
-								if(err) {
-									throw err;
-								// if user exists and (hashed) filled in password matches (hashed) password in db
-								} else if (user !== null && result === true) {
-									// start session and redirect to index
-									req.session.user = user;
-									res.redirect('/');
-								}
-							})
-						})
+					// when email is unique
+					.then( (user) => {
+						// start session and redirect to index
+						req.session.user = user;
+						res.redirect('/');
 					})
 				}
 			})	

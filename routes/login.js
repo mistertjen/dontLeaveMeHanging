@@ -9,7 +9,7 @@ let db = require(__dirname + '/../modules/database')
 
 router.route('/login')
 	.get((req, res) => {
-		res.render('registerlogin')
+		res.redirect('/')
 	})
 	// When submit button is clicked on login.pug
 	.post((req, res) => {
