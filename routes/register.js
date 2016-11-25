@@ -44,25 +44,10 @@ router.route('/register')
 						throw err
 					})
 					// when email is unique
-					.then( () => {
-						// check if newly registered user exists in table users
-						db.User.findOne({
-							where: {
-								email: req.body.email
-							}
-						}).then( (user) => {
-							// compare (hashed) typed in password, with (hashed) stored password of this user
-							bcrypt.compare(password, user.password, (err, result) => {
-								if(err) {
-									throw err;
-								// if user exists and (hashed) filled in password matches (hashed) password in db
-								} else if (user !== null && result === true) {
-									// start session and redirect to index
-									req.session.user = user;
-									res.redirect('/');
-								}
-							})
-						})
+					.then( (user) => {
+						// start session and redirect to index
+						req.session.user = user;
+						res.redirect('/');
 					})
 				}
 			})	
