@@ -11,7 +11,7 @@ router.route('/')
 		if(user){
 			res.render('index')
 		} else {
-			res.render('registerlogin')
+			res.render('registerlogin', {message:req.query.message})
 		}
 	})
 

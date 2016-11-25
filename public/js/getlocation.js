@@ -15,26 +15,21 @@ function undisableButton() {
 function getLocation(callback) {
 	// if browser doesn't support geolocation
 	if (!navigator.geolocation){
-		// declared without let so it's a global variable
-		latitude  = 'unknown';
-		longitude = 'unknown';
+		// declared without let so now a global variable
+		userlocation  = 'unknown';
 		undisableButton()
-		console.log(latitude + ', ' + longitude)
 	}
 	// if browser does support geolocation
 	function success(position) {
 		// gets latitude and longtitude from ip adress
-		latitude  = position.coords.latitude;
-		longitude = position.coords.longitude;
+		userlocation  = position.coords.latitude + ',' + position.coords.longitude;
+		//userloc = 'hallo'
 		undisableButton()
-		console.log(latitude + ', ' + longitude)
 	}
 	// if error
 	function error() {
-		latitude  = 'unknown';
-		longitude = 'unknown';
+		userlocation  = 'unknown';
 		undisableButton()
-		console.log(latitude + ', ' + longitude)
 	}
 	// call getCurrentPosition
 	navigator.geolocation.getCurrentPosition(success, error);
@@ -47,7 +42,7 @@ $('#hfaskform').submit(function () {
         return   $('<input>', {
             type: 'hidden',
             name: 'location',
-            value: latitude + ',' + longitude
+            value: userlocation
             // test else statement askhf.js
             // value: 'unknown,unknown'
         })

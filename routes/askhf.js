@@ -7,17 +7,19 @@ const router = express.Router()
 let db = require(__dirname + '/../modules/database')
 
 router.route('/askhf')
-	// test if button shows
+	// redirect to root, so if your logged in shows buttons, otherwise login
 	.get((req, res) => {
-		res.render('index')
+		// req.session.id = 1
+		res.redirect('/')
 	})
 	// When submit button for don't leave me hanging is clicked on index
 	.post((req, res) => {
 		// if location is coordinates and not the string 'unknown'
-		if(req.body.location != 'unknown,unknown') {
+		if(req.body.location != 'unknown') {
+			console.log(req.body.location)
 			// use google maps api to show all data about the coordinates in a json object on this url
 			let locationURL = "http://maps.googleapis.com/maps/api/geocode/json?latlng=" + req.body.location + "&sensor=true";
-		
+			console.log(locationURL)
 			// Make GET request to locationURL
     		// Save in variable e.g. unparsedData
 			request(locationURL, (error, response, body) => {
@@ -31,7 +33,8 @@ router.route('/askhf')
 				let country = parsedData.results[0].address_components[6].long_name
 				// store location
 				let location = city + ', ' + country
-				console.log(location)
+				// test
+				// console.log(location)
 
 				// create hfask with this location
 				db.HFAsk.create({
@@ -40,7 +43,7 @@ router.route('/askhf')
 					userId: req.session.user.id
 				})
 				.then( () => {
-					res.redirect('/timer')
+					res.redirect('/')
 				})
 			  }
 			})
@@ -52,7 +55,7 @@ router.route('/askhf')
 				userId: req.session.user.id
 			})
 			.then( () => {
-				res.redirect('/timer')
+				res.redirect('/')
 			})
 		}
 	})
