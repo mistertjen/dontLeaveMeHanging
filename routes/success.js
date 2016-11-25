@@ -65,7 +65,6 @@ router.route('/success/matchedHF')
 
 			req.session.matchedHF = ''
 			req.session.matchedPath = ''
-			
 		})
 	})
 
