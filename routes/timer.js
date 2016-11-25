@@ -15,10 +15,10 @@ router.route('/timer/HFAskTime')
 		db.HFAsk.findOne({
 			where: {
 				// needs active session
-				// userId: req.session.user.id
+				userId: req.session.user.id
 				
 				// TEST with this:
-				userId: 1
+				// userId: 1
 			}
 		})
 		.then(HFAsk => {
