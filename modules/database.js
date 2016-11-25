@@ -70,6 +70,18 @@ db.sync({force:true}).then(() => {
 		{
 		include: [HFAsk]
 	})
+	User.create({
+		name: "Timothy Blob",
+		email: "xxx@rhapsody.com",
+		password: "skalmlamk",
+		hfgives: [{
+			location: "Amsterdam"
+		}] 
+	}, 
+		// option object
+		{
+		include: [HFGive]
+	})
 })
 
 // by requiring database.js the code runs one time, by sending User, HFAsk, HFGive in an object you can access and create a user and high fives in routes
