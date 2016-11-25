@@ -13,8 +13,7 @@ const locationFunc = {
 		// if browser does support geolocation
 		function success(position) {
 			// gets latitude and longtitude from ip adress
-			// userlocation  = position.coords.latitude + ',' + position.coords.longitude;
-			userlocation  = 'unknown';
+			userlocation  = position.coords.latitude + ',' + position.coords.longitude;
 			//userloc = 'hallo'
 			document.getElementById("hfaskbutton").disabled = false;
 			document.getElementById("hfgivebutton").disabled = false;
