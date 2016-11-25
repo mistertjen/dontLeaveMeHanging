@@ -9,7 +9,7 @@ const bcrypt = require('bcrypt')
 router.route('/profile')
 	.get((req, res) => {
 		// needs active session
-		res.render('profile', {user:req.session.user})
+		res.render('profile', {user:req.session.user, message: req.query.message})
 		
 		// TEST with this:
 		// db.User.findById(1)
@@ -18,58 +18,66 @@ router.route('/profile')
 
 router.route('/profile/changeEmail')
 	.post((req, res) => {
-		if (req.body.email !== req.body.email2) {res.redirect('/profile?message=Email doesn\'t match.')}
-		else if (req.body.email) {
+		if (req.body.newEmail.length > 255) {res.redirect('/profile?message=' + encodeURIComponent("Input cannot be longer than 255 characters"))}	
+		else if (req.body.newEmail !== req.body.confirmNewEmail) res.redirect('/profile?message=' + encodeURIComponent('Email doesn\'t match.'))
+		else if (req.body.newEmail) {
 			db.User.update({
-				email: req.body.email
+				email: req.body.newEmail
 			}, {
 				where: {
 					// Doesn't work until sessions
-					username: req.session.user.name,
+					name: req.session.user.name,
 					id: req.session.user.id
 
 					// Test with this:
 					// id: 1
 				}
 			})
-			.then(x => res.redirect('/profile?message=Email successfully changed.'))
-			.catch(x => res.redirect('/profile?message=Emailaddress already exists.'))
+			.then(x => res.redirect('/profile?message=' + encodeURIComponent('Email successfully changed.')))
+			.catch(x => res.redirect('/profile?message=' + encodeURIComponent('Emailaddress already exists.')))
 		}
 	})
 
 router.route('/profile/changeName')
 	.post((req, res) => {
-		db.User.update({
-			name: req.body.name
-		}, {
-			where: {
-				// Doesn't work until sessions
-				username: req.session.user.name,
-				id: req.session.user.id
+		if (req.body.newName.length > 255) {res.redirect('/profile?message=' + encodeURIComponent("Input cannot be longer than 255 characters"))}
+		else if (req.body.newName) {
+			req.session.user.name = req.body.newName
+			db.User.update({
+				name: req.body.newName
+			}, {
+				where: {
+					// Doesn't work until sessions
+					name: req.session.user.name,
+					id: req.session.user.id
 
-				// Test with this:
-				// id: 1
-			}
-		})
-		res.redirect('/profile?message=Name successfully changed.')
+					// Test with this:
+					// id: 1
+				}
+			})
+			.then(user => {
+				res.redirect('/profile?message=' + encodeURIComponent('Name successfully changed.'))
+			})
+		}
 	})
 
 router.route('/profile/changePassword')
 	.post((req, res) => {
-		if (req.body.password !== req.body.password2) {res.redirect('/profile?message=New password doesn\'t match.')}
-		else if (req.body.password.length < 8) {res.redirect('/profile?message=Please fill in a new password with 8 characters or more.')}
-		else if (req.body.password.length) {
+		if (req.body.newPassword.length < 8) {res.redirect('/profile?message=' + encodeURIComponent('Please fill in a new password with 8 characters or more.'))}
+		else if (req.body.newPassword.length > 255) {res.redirect('/profile?message=' + encodeURIComponent("Input cannot be longer than 255 characters"))}
+		else if (req.body.newPassword !== req.body.confirmNewPassword) {res.redirect('/profile?message=' + encodeURIComponent('New password doesn\'t match.'))}
+		else if (req.body.newPassword.length) {
 			// Needs sessions
 			db.User.findById(req.session.user.id)
 			// Test with this:
 			// db.User.findById(1)
 			.then(user => {
-				bcrypt.hash(req.body.password, 10, (err, hash) => {
+				bcrypt.hash(req.body.newPassword, 10, (err, hash) => {
 					user.update({
 						password: hash
 					})
 					.then(x => {
-						res.redirect('/profile?message=Password successfully changed.')
+						res.redirect('/profile?message=' + encodeURIComponent('Password successfully changed.'))
 					})
 				})
 			})
