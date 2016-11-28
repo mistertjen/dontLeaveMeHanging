@@ -23,7 +23,6 @@ router.route('/success/check')
 				userId: req.session.user.id,
 				// TEST:
 				// userId: 1,
-				
 				hfgiveId: {
 					$ne: null
 				}
