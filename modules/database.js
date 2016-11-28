@@ -70,6 +70,14 @@ db.sync({force:true}).then(() => {
 		{
 		include: [HFAsk]
 	})
+	.then( x => {
+		return HFAsk.findById(1)
+	})
+	// .then (HFAsk => {
+	// 	HFAsk.update({
+	// 		hfgiveId: 1
+	// 	})
+	// })
 	User.create({
 		name: "Timothy Blob",
 		email: "xxx@rhapsody.com",

@@ -7,45 +7,29 @@ let db = require(__dirname + '/../modules/database')
 
 router.route('/success')
 	.get((req, res) => {
-		// db.User.findById(req.session.user.id)
-		// .then
-		// 	where: {
-		// 		id:
-		// 	}
-		// })
+		res.render('success')
+	})
+	.post((req, res) => {
 		db.HFAsk.findOne({
 			where: {
+				// PRODUCTION:
+				// userId: req.session.user.id
+				// TEST:
+				userId: 1,
+				
 				hfgiveId: {
 					$ne: null
 				}
-				// $not:
-				// 	{id:2}
-				// }	
-				// }
-				// $and: {
-				// 	id: {
-				// 		$not: 1
-				// 	}
-				// }
-				// hfgiveId: true
-				// id: {
-				// 	$ne: 1
-				// }
-				// $notIn: [{
-				// 	id: null
-				// }]
 			}
 		})
-		.then(x => {
-			if (x == null) res.send('failed')
-			else res.send('success!!!')
-			console.log(x.dataValues)
-			// res.end()
-			// console.log(x)
+		.then(HFAsk => {
+			if (HFAsk == null) res.send(false)
+			else res.send(true)
+			// console.log(HFAsk.dataValues)
 		})
-		.catch(x => {
-			res.send('')
-			console.log(x)
+		.catch(err => {
+			res.send(false)
+			console.log(err)
 		})
 	})
 
