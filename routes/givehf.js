@@ -50,7 +50,7 @@ router.route('/givehf')
 					}
 				})
 				.then(HFAsk => {
-					// there is still one hanging
+					// if there is still one hanging
 					if (HFAsk) {
 						// create hfgive with this location
 						db.HFGive.create({
@@ -98,40 +98,66 @@ router.route('/givehf')
 				})
 			  }
 			})
+		// else if location is 'unknown', create one with 'secret location'
 		} else {
-			// create hfask with 'unknown' as location
-			db.HFGive.create({
-				location: 'secret location',
-				// add userId with id of the user of this session, added to session object after login/registering app.get('/')
-				userId: req.session.user.id
-			})
-			// send result: new hfgive object to the then, so you can reach it in it's nested then
-			.then((hfgive)=>{
-				db.HFAsk.findOne ({
-					where: {
-						 //find first one which hasn't been matched yet to a hfgive
-							hfgiveId : null,
-						 $and: {
-							userId: {
-									// AND is not your own hfask
-									$not: req.session.user.id
-								}
+			// check if unmatched high five is still hanging and not already resolved
+			db.HFAsk.findOne ({
+				where: {
+					 //find first one which hasn't been matched yet to a hfgive
+					hfgiveId : null,
+					$and: {
+						userId: {
+							// AND is not your own hfask
+							$not: req.session.user.id
 						}
 					}
-				})
-				// nested in findOne-then, so it can reach the hfgive id just created through hfgive.dataValues.id
-				// send result of findone, so you can update this specific one
-				.then((hfask) => {
-					// because you gave the whole found hfask as an object, don't use db.HFAsk.update, but hfask.update (only this specific one just found)
-					hfask.update({
-						// give it the id of the hfgive you just created
-						hfgiveId: hfgive.dataValues.id
-					})
-				})
+				}
 			})
-			.then( () => {
-				// there's a match so redirect to /success
-				res.redirect('/success')
+			.then(HFAsk => {
+				// if there is still one hanging
+				if (HFAsk) {
+					// create hfask with 'unknown' as location
+					db.HFGive.create({
+						location: 'secret location',
+						// add userId with id of the user of this session, added to session object after login/registering app.get('/')
+						userId: req.session.user.id
+					})
+					// send result: new hfgive object to the then, so you can reach it in it's nested then
+					.then((hfgive)=>{
+						db.HFAsk.findOne ({
+							where: {
+								//find first one which hasn't been matched yet to a hfgive
+								hfgiveId : null,
+								$and: {
+									userId: {
+										// AND is not your own hfask
+										$not: req.session.user.id
+									}
+								}
+							}
+						})
+						// nested in findOne-then, so it can reach the hfgive id just created through hfgive.dataValues.id
+						// send result of findone, so you can update this specific one
+						.then((hfask) => {
+							// because you gave the whole found hfask as an object, don't use db.HFAsk.update, but hfask.update (only this specific one just found)
+							hfask.update({
+								// give it the id of the hfgive you just created
+								hfgiveId: hfgive.dataValues.id
+							})
+						})
+					})
+					.then( () => {
+						// there's a match so redirect to /success
+						res.redirect('/success')
+					})
+				} else {
+					// if there is no one hanging anymore, redirect to index and alert an oops
+					res.redirect('/?message=' + encodeURIComponent("Oops"))
+				}
+			})
+			.catch(err => {
+				res.send(false)
+				console.log(err)
 			})
 		}
 	})
