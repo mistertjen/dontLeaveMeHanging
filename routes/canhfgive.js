@@ -23,7 +23,7 @@ router.route('/canhfgive')
 		.then(HFAsk => {
 			if (HFAsk == null) res.send(false)
 			else res.send(true)
-			console.log(HFAsk.dataValues)
+			// console.log(HFAsk.dataValues)
 		})
 		.catch(err => {
 			res.send(false)

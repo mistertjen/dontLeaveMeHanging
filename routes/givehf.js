@@ -36,6 +36,9 @@ router.route('/givehf')
 				// test
 				// console.log(location)
 
+				// check if unmatched high five is still hanging and not already resolved
+				
+
 				// create hfgive with this location
 				db.HFGive.create({
 					location: location,

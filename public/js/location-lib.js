@@ -7,8 +7,8 @@ const locationFunc = {
 		if (!navigator.geolocation){
 			// declared without let so now a global variable
 			userlocation  = 'unknown';
-			document.getElementById("hfaskbutton").disabled = false;
-			//document.getElementById("hfgivebutton").disabled = false;
+			// document.getElementById("hfaskbutton").disabled = false;
+			// document.getElementById("hfgivebutton").disabled = false;
 
 			// when userlocation is set, run callback in index-script.js
 			if (typeof callback === 'function') callback()
@@ -18,8 +18,8 @@ const locationFunc = {
 			// gets latitude and longtitude from ip adress
 			userlocation  = position.coords.latitude + ',' + position.coords.longitude;
 			//userloc = 'hallo'
-			document.getElementById("hfaskbutton").disabled = false;
-			//document.getElementById("hfgivebutton").disabled = false;
+			// document.getElementById("hfaskbutton").disabled = false;
+			// document.getElementById("hfgivebutton").disabled = false;
 			
 			// when userlocation is set, run callback in index-script.js
 			if (typeof callback === 'function') callback()
@@ -27,8 +27,8 @@ const locationFunc = {
 		// if error
 		function error() {
 			userlocation  = 'unknown';
-			document.getElementById("hfaskbutton").disabled = false;
-			//document.getElementById("hfgivebutton").disabled = false;
+			// document.getElementById("hfaskbutton").disabled = false;
+			// document.getElementById("hfgivebutton").disabled = false;
 
 			// when userlocation is set, run callback in index-script.js
 			if (typeof callback === 'function') callback()
@@ -48,5 +48,11 @@ const locationFunc = {
 		        })
 		    })
 		});
+	},
+	disableButton: (buttonId) => {
+		document.getElementById(buttonId).disabled = true;
+	},
+	enableButton: (buttonId) => {
+		document.getElementById(buttonId).disabled = false;
 	}
 }
