@@ -20,9 +20,9 @@ router.route('/success/check')
 		db.HFAsk.findOne({
 			where: {
 				// PRODUCTION:
-				// userId: req.session.user.id
+				userId: req.session.user.id,
 				// TEST:
-				userId: 1,
+				// userId: 1,
 				
 				hfgiveId: {
 					$ne: null
@@ -48,10 +48,11 @@ router.route('/success/check')
 
 router.route('/success/matchedHF')
 	.get((req, res) => {
-		// send matchedHF stored in session variable
+		// find the username of the matching hf. 
 		db.User.findById(req.session.matchedHF.hfgive.userId)
 		.then (HFGiveUser => {
 			console.log(req.session.matchedHF)
+			// create object with only the specific data to send back.
 			let data = {
 				HFAskTime: req.session.matchedHF.updatedAt,
 				HFGiveTime: req.session.matchedHF.hfgive.updatedAt,

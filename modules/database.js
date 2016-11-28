@@ -70,6 +70,7 @@ db.sync({force:true}).then(() => {
 		{
 		include: [HFAsk]
 	})
+	// extra test data
 	.then( x => {
 		return HFAsk.findById(1)
 	})

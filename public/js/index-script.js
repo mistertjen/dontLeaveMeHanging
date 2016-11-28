@@ -5,7 +5,7 @@ const disableButton = (buttonId) => {
 }
 
 // id index op body index zetten
-if($('#index').length > 0) {
+if($('#index')) {
 	// because userlocation var is declared here library getlocation can reach and change it
 	let userlocation = ''
 	// disable hfaskbutton, because first location should be known + should only enable when you don't already have one hanging
