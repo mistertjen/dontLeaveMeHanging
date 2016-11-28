@@ -1,7 +1,5 @@
 if($('#success').length > 0) {
-	// timerFunc.getHFTimeMs('/success/matchedHF', (matchedHF) => {
 	$.get('/success/matchedHF', data => {
-		// console.log(data)
 		let HFAskTime = Date.parse(data.HFAskTime) // in ms
 		let HFGiveTime = Date.parse(data.HFGiveTime) // in ms
 		let difference = HFGiveTime - HFAskTime // in ms
