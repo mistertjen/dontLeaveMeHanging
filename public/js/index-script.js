@@ -5,7 +5,7 @@ const disableButton = (buttonId) => {
 }
 
 // id index op body index zetten
-if($('#index')) {
+if($('#index').length > 0) {
 	// because userlocation var is declared here library getlocation can reach and change it
 	let userlocation = ''
 	// disable hfaskbutton, because first location should be known + should only enable when you don't already have one hanging
@@ -19,4 +19,8 @@ if($('#index')) {
 
 	// event listener function: when submit is clicked for #hfaskform
 	locationFunc.submitLocation('#hfaskform')
+
+	// initial check for successful match and once again every 2 sec (2000ms).
+	successFunc.check()
+	setInterval(successFunc.check, 2000)
 }
