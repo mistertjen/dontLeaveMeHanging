@@ -2,13 +2,16 @@
 const locationFunc = {
 	// get location function
 	// using getlocation API
-	getLocation: () => {
+	getLocation: (callback) => {
 		// if browser doesn't support geolocation
 		if (!navigator.geolocation){
 			// declared without let so now a global variable
 			userlocation  = 'unknown';
 			document.getElementById("hfaskbutton").disabled = false;
-			document.getElementById("hfgivebutton").disabled = false;
+			//document.getElementById("hfgivebutton").disabled = false;
+
+			// when userlocation is set, run callback in index-script.js
+			if (typeof callback === 'function') callback()
 		}
 		// if browser does support geolocation
 		function success(position) {
@@ -16,13 +19,19 @@ const locationFunc = {
 			userlocation  = position.coords.latitude + ',' + position.coords.longitude;
 			//userloc = 'hallo'
 			document.getElementById("hfaskbutton").disabled = false;
-			document.getElementById("hfgivebutton").disabled = false;
+			//document.getElementById("hfgivebutton").disabled = false;
+			
+			// when userlocation is set, run callback in index-script.js
+			if (typeof callback === 'function') callback()
 		}
 		// if error
 		function error() {
 			userlocation  = 'unknown';
 			document.getElementById("hfaskbutton").disabled = false;
-			document.getElementById("hfgivebutton").disabled = false;
+			//document.getElementById("hfgivebutton").disabled = false;
+
+			// when userlocation is set, run callback in index-script.js
+			if (typeof callback === 'function') callback()
 		}
 		// call getCurrentPosition
 		navigator.geolocation.getCurrentPosition(success, error);

@@ -11,7 +11,9 @@ if($('#index')) {
 	// disable hfaskbutton, because first location should be known + should only enable when you don't already have one hanging
 	disableButton('hfaskbutton')
 	disableButton('hfgivebutton')
-	locationFunc.getLocation()
+	locationFunc.getLocation( () => {
+		setInterval(checkFunc.buttonHFGive, 2000)
+	})
 	// is getLocation klaar && en hangt er niet al eentje
 	// dan enable button (HFAsk)
 
