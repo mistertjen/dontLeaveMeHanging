@@ -9,7 +9,7 @@ router.route('/')
 	.get((req, res) => {
 		let user = req.session.user;
 		if(user){
-			res.render('index')
+			res.render('index', {message:req.query.message})
 		} else {
 			res.render('registerlogin', {message:req.query.message})
 		}
