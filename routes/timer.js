@@ -22,8 +22,10 @@ router.route('/timer/HFAskTime')
 			}
 		})
 		.then(HFAsk => {
-			let UTCTime = HFAsk.dataValues.updatedAt;
-			res.send(UTCTime)
+			if(HFAsk) {
+				let UTCTime = HFAsk.dataValues.updatedAt;
+				res.send(UTCTime)
+			}
 		})
 	})
 
