@@ -64,14 +64,15 @@ router.route('/givehf')
 							db.HFAsk.findOne ({
 								where: {
 									 //find first one which hasn't been matched yet to a hfgive
-										hfgiveId : null,
-									 $and: {
+									hfgiveId : null,
+									$and: {
 										userId: {
-												// AND is not your own hfask
-												$not: req.session.user.id
-											}
+											// AND is not your own hfask
+											$not: req.session.user.id
+										}
 									}
-								}
+								},
+								include: {all:true}
 							})
 							// nested in findOne-then, so it can reach the hfgive id just created through hfgive.dataValues.id
 							// send result of findone, so you can update this specific one
@@ -81,14 +82,17 @@ router.route('/givehf')
 									// give it the id of the hfgive you just created
 									hfgiveId: hfgive.dataValues.id
 								})
+								.then( (hfask) => {
+								// add hfgive obj to the updated hfask
+								hfask.dataValues.hfgive = hfgive
+								// set session data
+								req.session.matchedPath = 'HFGive'
+								req.session.matchedHF = hfask
+
+								// there's a match so redirect to /success
+								res.redirect('/success')
+								})
 							})
-						})
-						.then( (x) => {
-							// there's a match so redirect to /success
-							console.log(`success 1 is ${x}`)
-							req.session.matchedPath = 'HFGive'
-							req.session.matchedHF = x
-							res.redirect('/success')
 						})
 					}
 					else {
@@ -152,12 +156,12 @@ router.route('/givehf')
 								// give it the id of the hfgive you just created
 								hfgiveId: hfgive.dataValues.id
 							})			
-							.then( (hfask) => {
-								// there's a match so redirect to /success
+							.then( (hfask) => {								
 								hfask.dataValues.hfgive = hfgive
-								// console.log(hfask)
 								req.session.matchedPath = 'HFGive'
 								req.session.matchedHF = hfask
+
+								// there's a match so redirect to /success
 								res.redirect('/success')
 							})
 						})
