@@ -11,7 +11,7 @@ router.route('/canhfask')
 			where: {
 				 //find first one which hasn't been matched yet to a hfgive
 				hfgiveId : null,
-				$and: { // userId is own, so an unmatched HFAsk that's yours
+				$and: { // AND is your own
 					userId: req.session.user.id
 				}
 			}
