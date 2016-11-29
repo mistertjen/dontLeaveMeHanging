@@ -37,6 +37,10 @@ let HFAsk = db.define('hfask', {
 })
 
 let HFGive = db.define('hfgive', {
+	username: {
+		type: Sequelize.STRING,
+		allowNull: false
+	},
 	location: {
 		type: Sequelize.STRING,
 		allowNull: false

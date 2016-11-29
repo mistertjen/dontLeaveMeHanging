@@ -8,8 +8,82 @@ const bcrypt = require('bcrypt')
 
 router.route('/profile')
 	.get((req, res) => {
-		// needs active session
-		res.render('profile', {user:req.session.user, message: req.query.message})
+		let user = req.session.user;
+		if(user){
+			db.HFAsk.findAll({
+				where: {
+					// all own HFAsks
+					userId: req.session.user.id,
+					// that are matched/have hfgiveId
+					hfgiveId:
+					{
+						$ne: null
+					}
+				},
+				// if false both deleted and non-deleted results will be returned
+				// if true only non-deleted results
+				paranoid: false,
+				// include all associations (user, hfask, hfgive)
+				include: [{all:true}]
+			})
+			.then(HFAskArray => {
+				// if you don't have resolved HFAsks, so array is empty
+				if(HFAskArray == ''){
+					// set askResult to 
+					let askResult = "You didn't receive a high five yet."
+					// sends user data, message(for example when you change your password) and askResult to pug
+					res.render('profile', {user: req.session.user, message: req.query.message, askResult: askResult})
+				} else {
+					// declare an empty array to store the data in we need on profile.pug
+					let askResult = []
+					// function to calculate the timedifference beteen HFGive and HFAsk
+					let msToTime = (ms) => {
+							// transform to seconds
+							x = ms / 1000;
+							// get amount of seconds that are not a whole minute
+							seconds = Math.floor(x % 60)
+							// transform to minutes
+							x /= 60
+							// get amount of minutes that are not a whole hour
+							minutes = Math.floor(x % 60)
+							// transform to hours
+							x /= 60
+							// get amount of hours that are not a whole day
+							hours = Math.floor(x % 24)
+							// transform to days
+							days = Math.floor(x / 24)
+							const result = {seconds: seconds, minutes: minutes, hours:hours, days: days}
+							return result
+						}
+					// loop through HFAskArray to store all resolved HFAsks as object in askResult array
+					for (let i = 0; i < HFAskArray.length; i++) {
+						// every loop create object with data we need
+						// date parse so you can calculate the difference
+						let HFGiveTime = Date.parse(HFAskArray[i].hfgive.createdAt)
+						let HFAskTime = Date.parse(HFAskArray[i].createdAt)
+						// calculate difference
+						let difference = HFGiveTime - HFAskTime // in ms
+						// always convert difference to positive number. Therefore doesn't matter if HFAsk or HFGive was created first. <-- math thingy
+						if (difference < 0) difference *= -1
+						// revert differcence to time object
+						let timeObj = msToTime(difference)
+
+						let hfdata = {
+							HFGiveName: HFAskArray[i].hfgive.username,
+							HFGiveLocation: HFAskArray[i].hfgive.location,
+							// whole object so script in pug dissects it
+							HFTimeDifference: timeObj
+						}
+						// push object hfdata to array: askResult
+						askResult.push(hfdata)
+					}
+					// sends user data and message (for example change password), askResult array to pug
+					res.render('profile', {user: req.session.user, message: req.query.message, askResult: askResult})
+				}
+			})
+		} else {
+			res.render('registerlogin', {message: "Please, log in to view your profile."})
+		}
 		
 		// TEST with this:
 		// db.User.findById(1)
