@@ -158,7 +158,6 @@ router.route('/givehf')
 								hfask.dataValues.hfgive = hfgive
 								req.session.matchedPath = 'HFGive'
 								req.session.matchedHF = hfask
-
 								// there's a match so redirect to /success
 								res.redirect('/success')
 							})
