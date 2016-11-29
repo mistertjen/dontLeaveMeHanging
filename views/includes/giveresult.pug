@@ -1,0 +1,13 @@
+h2 Your given high fives
+
+//- if you don't have HFGives yet
+if (giveResult == "You didn't give a high five yet.")
+	p #{giveResult}
+
+//- p #{giveResult}
+
+//- if you have HFGives, show each
+else 
+	each hfgive in giveResult
+		- let message = `You left ${hfgive.HFAskName} from ${hfgive.HFAskLocation} hanging for: ${hfgive.HFTimeDifference.days} days, ${hfgive.HFTimeDifference.hours} hours, ${hfgive.HFTimeDifference.minutes} minutes, ${hfgive.HFTimeDifference.seconds} seconds. `
+		p #{message}

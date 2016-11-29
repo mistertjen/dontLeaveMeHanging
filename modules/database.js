@@ -28,6 +28,10 @@ let User = db.define('user', {
 })
 
 let HFAsk = db.define('hfask', {
+	username: {
+		type: Sequelize.STRING,
+		allowNull: false
+	},
 	location: {
 		type: Sequelize.STRING,
 		allowNull: false
@@ -67,6 +71,7 @@ db.sync({force:true}).then(() => {
 		email: "bohemian@rhapsody.com",
 		password: "dontstopmenow",
 		hfasks: [{
+			username: "Freddie Mercury",
 			location: "Barcelona"
 		}] 
 	}, 
