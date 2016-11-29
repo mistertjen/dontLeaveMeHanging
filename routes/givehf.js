@@ -64,14 +64,15 @@ router.route('/givehf')
 							db.HFAsk.findOne ({
 								where: {
 									 //find first one which hasn't been matched yet to a hfgive
-										hfgiveId : null,
-									 $and: {
+									hfgiveId : null,
+									$and: {
 										userId: {
-												// AND is not your own hfask
-												$not: req.session.user.id
-											}
+											// AND is not your own hfask
+											$not: req.session.user.id
+										}
 									}
-								}
+								},
+								include: {all:true}
 							})
 							// nested in findOne-then, so it can reach the hfgive id just created through hfgive.dataValues.id
 							// send result of findone, so you can update this specific one
@@ -81,11 +82,17 @@ router.route('/givehf')
 									// give it the id of the hfgive you just created
 									hfgiveId: hfgive.dataValues.id
 								})
+								.then( (hfask) => {
+								// add hfgive obj to the updated hfask
+								hfask.dataValues.hfgive = hfgive
+								// set session data
+								req.session.matchedPath = 'HFGive'
+								req.session.matchedHF = hfask
+
+								// there's a match so redirect to /success
+								res.redirect('/success')
+								})
 							})
-						})
-						.then( () => {
-							// there's a match so redirect to /success
-							res.redirect('/success')
 						})
 					}
 					else {
@@ -136,6 +143,9 @@ router.route('/givehf')
 										$not: req.session.user.id
 									}
 								}
+							},
+							include: {
+								all: true
 							}
 						})
 						// nested in findOne-then, so it can reach the hfgive id just created through hfgive.dataValues.id
@@ -145,12 +155,15 @@ router.route('/givehf')
 							hfask.update({
 								// give it the id of the hfgive you just created
 								hfgiveId: hfgive.dataValues.id
+							})			
+							.then( (hfask) => {								
+								hfask.dataValues.hfgive = hfgive
+								req.session.matchedPath = 'HFGive'
+								req.session.matchedHF = hfask
+								// there's a match so redirect to /success
+								res.redirect('/success')
 							})
 						})
-					})
-					.then( () => {
-						// there's a match so redirect to /success
-						res.redirect('/success')
 					})
 				} else {
 					// if there is no one hanging anymore, redirect to index and alert an oops

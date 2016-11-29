@@ -53,8 +53,10 @@ router.route('/success/matchedHF')
 			console.log(req.session.matchedHF)
 			// create object with only the specific data to send back.
 			let data = {
-				HFAskTime: req.session.matchedHF.updatedAt,
-				HFGiveTime: req.session.matchedHF.hfgive.updatedAt,
+				HFAskTime: req.session.matchedHF.createdAt,
+				HFAskLocation: req.session.matchedHF.location,
+				HFAskUserName: req.session.matchedHF.user.name,
+				HFGiveTime: req.session.matchedHF.hfgive.createdAt,
 				HFGiveLocation: req.session.matchedHF.hfgive.location,
 				HFGiveUserName: HFGiveUser.name
 			}
