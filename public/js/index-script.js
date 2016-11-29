@@ -16,4 +16,8 @@ if($('#index').length > 0) {
 	// event listener function: when submit is clicked for #hfaskform
 	locationFunc.submitLocation('#hfaskform')
 	locationFunc.submitLocation('#hfgiveform')
+
+	// initial check for successful match and once again every 2 sec (2000ms).
+	successFunc.check()
+	setInterval(successFunc.check, 2000)
 }
