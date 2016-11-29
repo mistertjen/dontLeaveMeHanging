@@ -20,7 +20,7 @@ router.route('/canhfask')
 			// if there is no HFAsk hanging which is your own, you can ask one, so send true
 			if (HFAsk == null) res.send(true)
 			// if there is a HFAsk hanging which is your own, you can't ask one, so send false
-			else res.send(true)
+			else res.send(false)
 			// console.log(HFAsk.dataValues)
 		})
 		.catch(err => {
