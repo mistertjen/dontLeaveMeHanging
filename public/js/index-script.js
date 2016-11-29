@@ -10,8 +10,7 @@ if($('#index').length > 0) {
 	// check every 2 seconds if there is a high five which is not your own hanging to give high five
 	setInterval(checkFunc.buttonHFGive, 2000)
 
-	// is getLocation klaar en is er een HFAsk die niet van jezelf is
-	// dan enable button (HFGive)
+	setInterval(checkFunc.buttonHFAsk, 2000)
 
 	// event listener function: when submit is clicked for #hfaskform
 	locationFunc.submitLocation('#hfaskform')

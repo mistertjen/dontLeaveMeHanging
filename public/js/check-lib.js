@@ -4,8 +4,8 @@ const checkFunc = {
 		// test if function is called every 2 secs after location is known
 		// console.log('i work every 2 secs')
 		$.get('/canhfgive', (data) => {
-			// console logt if there is an unmatched high five hanging (that's not your own)
-			console.log("There is a HFAsk hanging which is not your own, so you can give")
+			// console logt data so true or false
+			console.log("buttonHFGive: " + data)
 			// if there is one hanging unmatched
 			if(data) {
 				// get location, with a callback, which is a function
@@ -25,8 +25,8 @@ const checkFunc = {
 		// test if function is called every 2 secs after location is known
 		// console.log('i work every 2 secs')
 		$.get('/canhfask', (data) => {
-			// console logt if there isn't an unmatched high five hanging from yourself
-			console.log("You don't have a HFAsk hanging, so you can ask")
+			// console logt data so true or false
+			console.log("buttonHFAsk: " + data)
 			// if there is one hanging unmatched
 			if(data) {
 				// get location, with a callback, which is a function
