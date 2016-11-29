@@ -38,6 +38,7 @@ router.route('/askhf')
 
 				// create hfask with this location
 				db.HFAsk.create({
+					username: req.session.user.name,
 					location: location,
 					// add userId with id of the user of this session, added to session object after login/registering app.get('/')
 					userId: req.session.user.id
@@ -50,6 +51,7 @@ router.route('/askhf')
 		} else {
 			// create hfask with 'unknown' as location
 			db.HFAsk.create({
+				username: req.session.user.name,
 				location: 'secret location',
 				// add userId with id of the user of this session, added to session object after login/registering app.get('/')
 				userId: req.session.user.id
