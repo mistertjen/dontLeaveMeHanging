@@ -35,61 +35,11 @@ router.route('/profile')
 				})
 			])
 			.then(resolvedHFs => {
-				console.log(resolvedHFs[0])
-				console.log(resolvedHFs[1])
-				let giveResult = ''
+				// declare variables here so results from inside the if-else-block statements can be passed to the pug file
 				let askResult = ""
+				let giveResult = ""
+
 				// if you don't have resolved HFAsks, so array is empty
-
-				if(resolvedHFs[1] == ''){
-					// set askResult to 
-					giveResult = "You didn't give a high five yet."
-				} else if (resolvedHFs[1] !== '') {
-					// declare an empty array to store the data in we need on profile.pug
-					giveResult = []
-					// function to calculate the timedifference beteen HFGive and HFAsk
-					let msToTime = (ms) => {
-							// transform to seconds
-							x = ms / 1000;
-							// get amount of seconds that are not a whole minute
-							seconds = Math.floor(x % 60)
-							// transform to minutes
-							x /= 60
-							// get amount of minutes that are not a whole hour
-							minutes = Math.floor(x % 60)
-							// transform to hours
-							x /= 60
-							// get amount of hours that are not a whole day
-							hours = Math.floor(x % 24)
-							// transform to days
-							days = Math.floor(x / 24)
-							const result = {seconds: seconds, minutes: minutes, hours:hours, days: days}
-							return result
-						}
-					// loop through resolvedHFs[0] to store all resolved HFAsks as object in askResult array
-					for (let i = 0; i < resolvedHFs[1].length; i++) {
-						// every loop create object with data we need
-						// date parse so you can calculate the difference
-						let HFGiveTime = Date.parse(resolvedHFs[1][i].createdAt)
-						let HFAskTime = Date.parse(resolvedHFs[1][i].hfask.createdAt)
-						// calculate difference
-						let difference = HFGiveTime - HFAskTime // in ms
-						// always convert difference to positive number. Therefore doesn't matter if HFAsk or HFGive was created first. <-- math thingy
-						if (difference < 0) difference *= -1
-						// revert differcence to time object
-						let timeObj = msToTime(difference)
-
-						let hfdata = {
-							HFAskName: resolvedHFs[1][i].hfask.username,
-							HFAskLocation: resolvedHFs[1][i].hfask.location,
-							// whole object so script in pug dissects it
-							HFTimeDifference: timeObj
-						}
-						// push object hfdata to array: askResult
-						giveResult.push(hfdata)
-					}
-				}
-
 				if(resolvedHFs[0] == ''){
 					// set askResult to 
 					askResult = "You didn't receive a high five yet."
@@ -139,15 +89,63 @@ router.route('/profile')
 					}
 					// sends user data and message (for example change password), askResult array to pug
 				}
+
+				// if you don't have resolved HFGives, so array is empty
+				if(resolvedHFs[1] == ''){
+					// set giveResult to 
+					giveResult = "You didn't give a high five yet."
+				} else if (resolvedHFs[1] !== '') {
+					// declare an empty array to store the data in we need on profile.pug
+					giveResult = []
+					// function to calculate the timedifference beteen HFGive and HFAsk
+					let msToTime = (ms) => {
+							// transform to seconds
+							x = ms / 1000;
+							// get amount of seconds that are not a whole minute
+							seconds = Math.floor(x % 60)
+							// transform to minutes
+							x /= 60
+							// get amount of minutes that are not a whole hour
+							minutes = Math.floor(x % 60)
+							// transform to hours
+							x /= 60
+							// get amount of hours that are not a whole day
+							hours = Math.floor(x % 24)
+							// transform to days
+							days = Math.floor(x / 24)
+							const result = {seconds: seconds, minutes: minutes, hours:hours, days: days}
+							return result
+						}
+					// loop through resolvedHFs[1] to store all resolved HFGives as object in giveResult array
+					for (let i = 0; i < resolvedHFs[1].length; i++) {
+						// every loop create object with data we need
+						// date parse so you can calculate the difference
+						let HFGiveTime = Date.parse(resolvedHFs[1][i].createdAt)
+						let HFAskTime = Date.parse(resolvedHFs[1][i].hfask.createdAt)
+						// calculate difference
+						let difference = HFGiveTime - HFAskTime // in ms
+						// always convert difference to positive number. Therefore doesn't matter if HFAsk or HFGive was created first. <-- math thingy
+						if (difference < 0) difference *= -1
+						// revert difference to time object
+						let timeObj = msToTime(difference)
+
+						let hfdata = {
+							HFAskName: resolvedHFs[1][i].hfask.username,
+							HFAskLocation: resolvedHFs[1][i].hfask.location,
+							// whole object so script in pug dissects it
+							HFTimeDifference: timeObj
+						}
+						// push object hfdata to array: giveResult
+						giveResult.push(hfdata)
+					}
+				}
+
+				// render profile with user data, message (such as password change), askResult and giveResult
 				res.render('profile', {user: req.session.user, message: req.query.message, askResult: askResult, giveResult: giveResult})
 			})
 		} else {
 			res.render('registerlogin', {message: "Please, log in to view your profile."})
 		}
-		
-		// TEST with this:
-		// db.User.findById(1)
-		// .then(user => res.render('profile', {user:user}))
 	})
 
 router.route('/profile/changeEmail')
