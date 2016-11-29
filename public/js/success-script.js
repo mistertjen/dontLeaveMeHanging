@@ -10,11 +10,15 @@ if($('#success').length > 0) {
 		let timeObj = timerFunc.msToTime(difference)
 		
 		// uses es6 template string
-		let timeString = `You have been left having for: ${timeObj.days} days, ${timeObj.hours} hours, ${timeObj.minutes} minutes, ${timeObj.seconds} seconds. `
+		if($('#asker')) {
+			let successMessage = `${data.HFGiveUserName} from ${data.HFGiveLocation} left you hanging for: ${timeObj.days} days, ${timeObj.hours} hours, ${timeObj.minutes} minutes, ${timeObj.seconds} seconds. `
+			$('#success-message').html(successMessage)
+		}
 
-		$('#timeString').html(timeString)
-		$('#location').html(`From ${data.HFGiveLocation}`)
-		$('#username').html(`By ${data.HFGiveUserName}`)
+		if($('#giver')) {
+			let successMessage = `You left ${data.HFAskUserName} from ${data.HFAskLocation} hanging for: ${timeObj.days} days, ${timeObj.hours} hours, ${timeObj.minutes} minutes, ${timeObj.seconds} seconds. `
+			$('#success-message').html(successMessage)
+		}
 	})
 }
 	
