@@ -5,25 +5,22 @@ const router = express.Router()
 // require database.js module
 let db = require(__dirname + '/../modules/database')
 
-router.route('/canhfgive')
+router.route('/canhfask')
 	.get((req, res) => {
 		db.HFAsk.findOne ({
 			where: {
 				 //find first one which hasn't been matched yet to a hfgive
 				hfgiveId : null,
-				$and: {
-					userId: {
-						// AND is not your own hfask
-						$not: req.session.user.id
-					}
+				$and: { // AND is your own
+					userId: req.session.user.id
 				}
 			}
 		})
 		.then(HFAsk => {
-			// if there is no HFAsk hanging that's not your own, you can't give one back, so send false
-			if (HFAsk == null) res.send(false)
-			// if there is a HFAsk hanging and it's not your own, you van give one, so send true
-			else res.send(true)
+			// if there is no HFAsk hanging which is your own, you can ask one, so send true
+			if (HFAsk == null) res.send(true)
+			// if there is a HFAsk hanging which is your own, you can't ask one, so send false
+			else res.send(false)
 			// console.log(HFAsk.dataValues)
 		})
 		.catch(err => {

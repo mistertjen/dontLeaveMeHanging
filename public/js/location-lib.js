@@ -7,8 +7,6 @@ const locationFunc = {
 		if (!navigator.geolocation){
 			// declared without let so now a global variable
 			userlocation  = 'unknown';
-			// document.getElementById("hfaskbutton").disabled = false;
-			// document.getElementById("hfgivebutton").disabled = false;
 
 			// when userlocation is set, run callback in index-script.js
 			if (typeof callback === 'function') callback()
@@ -16,10 +14,9 @@ const locationFunc = {
 		// if browser does support geolocation
 		function success(position) {
 			// gets latitude and longtitude from ip adress
-			//userlocation  = position.coords.latitude + ',' + position.coords.longitude;
-			userlocation  = 'unknown';
-			// document.getElementById("hfaskbutton").disabled = false;
-			// document.getElementById("hfgivebutton").disabled = false;
+			userlocation  = position.coords.latitude + ',' + position.coords.longitude;
+			// test
+			// userlocation  = 'unknown';
 			
 			// when userlocation is set, run callback in index-script.js
 			if (typeof callback === 'function') callback()
@@ -27,8 +24,6 @@ const locationFunc = {
 		// if error
 		function error() {
 			userlocation  = 'unknown';
-			// document.getElementById("hfaskbutton").disabled = false;
-			// document.getElementById("hfgivebutton").disabled = false;
 
 			// when userlocation is set, run callback in index-script.js
 			if (typeof callback === 'function') callback()
