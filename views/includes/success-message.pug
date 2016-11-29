@@ -1,14 +1,14 @@
 if matchedPath === 'HFAsk'
-	p#timeString
-	p#username
-	p#location
-	p You are a Asker
+	h4#asker You received a high five!
+	p#success-message
+	a(href='/')
+		button Ok cool
 
 if matchedPath === 'HFGive'
-	p#timeString
-	p#username
-	p#location
-	p You are a Giver
+	h4#giver You gave a high five!
+	p#success-message
+	a(href='/')
+		button Ok cool
 
 if matchedPath === null
-	p null
+	p

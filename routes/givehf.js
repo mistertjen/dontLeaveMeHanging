@@ -83,8 +83,11 @@ router.route('/givehf')
 								})
 							})
 						})
-						.then( () => {
+						.then( (x) => {
 							// there's a match so redirect to /success
+							console.log(`success 1 is ${x}`)
+							req.session.matchedPath = 'HFGive'
+							req.session.matchedHF = x
 							res.redirect('/success')
 						})
 					}
@@ -136,6 +139,9 @@ router.route('/givehf')
 										$not: req.session.user.id
 									}
 								}
+							},
+							include: {
+								all: true
 							}
 						})
 						// nested in findOne-then, so it can reach the hfgive id just created through hfgive.dataValues.id
@@ -145,12 +151,16 @@ router.route('/givehf')
 							hfask.update({
 								// give it the id of the hfgive you just created
 								hfgiveId: hfgive.dataValues.id
+							})			
+							.then( (hfask) => {
+								// there's a match so redirect to /success
+								hfask.dataValues.hfgive = hfgive
+								// console.log(hfask)
+								req.session.matchedPath = 'HFGive'
+								req.session.matchedHF = hfask
+								res.redirect('/success')
 							})
 						})
-					})
-					.then( () => {
-						// there's a match so redirect to /success
-						res.redirect('/success')
 					})
 				} else {
 					// if there is no one hanging anymore, redirect to index and alert an oops
