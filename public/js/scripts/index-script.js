@@ -1,7 +1,8 @@
 // this is extra and only for webpack use
-const locationFunc = require(__dirname + '/location-lib')
-const checkFunc = require(__dirname + '/check-lib')
-const successFunc = require(__dirname + '/success-lib')
+let $ = require('jquery')
+const locationFunc = require(__dirname + '/../libraries/location-lib')
+const checkFunc = require(__dirname + '/../libraries/check-lib')
+const successFunc = require(__dirname + '/../libraries/success-lib')
 
 // this script executes functions from libraries when it reaches index with the #index
 // id index op body index zetten

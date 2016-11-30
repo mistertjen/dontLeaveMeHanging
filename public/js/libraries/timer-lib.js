@@ -1,5 +1,8 @@
 // a mini-library containing an object with all timer functions. Set in an object so you can easily access with timerFunc.methodName, makes it semantically easy to see a timerFunc is being used. Also ability to log all timer functions with console.log(timerFunc) in any script file. Important to include these before the custom script files (just like other libraries)
 
+// this is extra and only for webpack use
+let $ = require('jquery')
+
 const timerFunc = {
 	getHFTimeMs: (route, callback) => {
 		// make GET request to the route

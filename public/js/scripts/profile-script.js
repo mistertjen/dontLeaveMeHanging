@@ -1,5 +1,6 @@
 // this is extra and only for webpack use
-const successFunc =require(__dirname + '/success-lib')
+let $ = require('jquery')
+const successFunc =require(__dirname + '/../libraries/success-lib')
 
 // initial check for successful match and once again every 2 sec (2000ms).
 if($('#profile').length > 0) {

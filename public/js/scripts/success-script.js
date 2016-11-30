@@ -1,5 +1,6 @@
 // this is extra and only for webpack use
-const timerFunc = require(__dirname + '/timer-lib')
+let $ = require('jquery')
+const timerFunc = require(__dirname + '/../libraries/timer-lib')
 
 if($('#success').length > 0) {
 	$.get('/success/matchedHF', data => {
