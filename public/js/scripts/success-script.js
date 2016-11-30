@@ -1,3 +1,7 @@
+// this is extra and only for webpack use
+let $ = require('jquery')
+const timerFunc = require(__dirname + '/../libraries/timer-lib')
+
 if($('#success').length > 0) {
 	$.get('/success/matchedHF', data => {
 		let HFAskTime = Date.parse(data.HFAskTime) // in ms

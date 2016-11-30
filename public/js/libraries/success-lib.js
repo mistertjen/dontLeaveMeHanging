@@ -1,3 +1,6 @@
+// this is extra and only for webpack use
+let $ = require('jquery')
+
 const successFunc = {
 	check: () => {
 		// post to standard route, data gets true or false
@@ -6,4 +9,9 @@ const successFunc = {
 			if(data) location.href = "/success"
 		})
 	}
+}
+
+// this is extra and only for webpack use
+module.exports = {
+	check: successFunc.check
 }

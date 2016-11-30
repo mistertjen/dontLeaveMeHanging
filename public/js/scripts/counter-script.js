@@ -1,3 +1,7 @@
+// this is extra and only for webpack use
+let $ = require('jquery')
+const timerFunc = require(__dirname + '/../libraries/timer-lib')
+
 // function only called on pages that include a timer class and adds the timeString to the html element.
 if ($('.timer').length > 0) { 
 	// store dom object, to prevent constant jquery calls.
