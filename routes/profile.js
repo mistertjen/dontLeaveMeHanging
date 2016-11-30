@@ -39,8 +39,8 @@ router.route('/profile')
 			])
 			.then(resolvedHFs => {
 				// declare variables here so results from inside the if-else-block statements can be passed to the pug file
-				console.log(resolvedHFs[0])
-				console.log(resolvedHFs[1])
+					// console.log(resolvedHFs[0])
+					// console.log(resolvedHFs[1])
 				let askResult = ""
 				let giveResult = ""
 
@@ -155,22 +155,17 @@ router.route('/profile')
 
 router.route('/profile/changeEmail')
 	.post((req, res) => {
+		// error handling
 		if (req.body.newEmail.length > 255) {res.redirect('/profile?message=' + encodeURIComponent("Input cannot be longer than 255 characters"))}	
 		else if (req.body.newEmail !== req.body.confirmNewEmail) res.redirect('/profile?message=' + encodeURIComponent('Email doesn\'t match.'))
+		// database and session update
 		else if (req.body.newEmail) {
-			console.log('here')
-			console.log(req.session.user)
-			
 			db.User.update({
 				email: req.body.newEmail
 			}, {
 				where: {
-					// Doesn't work until sessions
 					name: req.session.user.name,
 					id: req.session.user.id
-
-					// Test with this:
-					// id: 1
 				}
 			})
 			.then(x => {
@@ -183,18 +178,16 @@ router.route('/profile/changeEmail')
 
 router.route('/profile/changeName')
 	.post((req, res) => {
+		// error handling
 		if (req.body.newName.length > 255) {res.redirect('/profile?message=' + encodeURIComponent("Input cannot be longer than 255 characters"))}
+		// database and session update
 		else if (req.body.newName) {
 			db.User.update({
 				name: req.body.newName
 			}, {
 				where: {
-					// Doesn't work until sessions
 					name: req.session.user.name,
 					id: req.session.user.id
-
-					// Test with this:
-					// id: 1
 				}
 			})
 			.then(user => {
@@ -206,14 +199,13 @@ router.route('/profile/changeName')
 
 router.route('/profile/changePassword')
 	.post((req, res) => {
+		// error handling
 		if (req.body.newPassword.length < 8) {res.redirect('/profile?message=' + encodeURIComponent('Please fill in a new password with 8 characters or more.'))}
 		else if (req.body.newPassword.length > 255) {res.redirect('/profile?message=' + encodeURIComponent("Input cannot be longer than 255 characters"))}
 		else if (req.body.newPassword !== req.body.confirmNewPassword) {res.redirect('/profile?message=' + encodeURIComponent('New password doesn\'t match.'))}
+		// database update
 		else if (req.body.newPassword.length) {
-			// Needs sessions
 			db.User.findById(req.session.user.id)
-			// Test with this:
-			// db.User.findById(1)
 			.then(user => {
 				bcrypt.hash(req.body.newPassword, 10, (err, hash) => {
 					user.update({
