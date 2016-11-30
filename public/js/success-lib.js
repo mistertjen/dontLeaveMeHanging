@@ -7,3 +7,8 @@ const successFunc = {
 		})
 	}
 }
+
+// this is extra and only for webpack use
+module.exports = {
+	check: successFunc.check
+}

@@ -11,20 +11,26 @@ const timerFunc = {
 	},
 	msToTime: (ms) => {
 		// transform to seconds
-		x = ms / 1000;
+		let x = ms / 1000;
 		// get amount of seconds that are not a whole minute
-		seconds = Math.floor(x % 60)
+		let seconds = Math.floor(x % 60)
 		// transform to minutes
 		x /= 60
 		// get amount of minutes that are not a whole hour
-		minutes = Math.floor(x % 60)
+		let minutes = Math.floor(x % 60)
 		// transform to hours
 		x /= 60
 		// get amount of hours that are not a whole day
-		hours = Math.floor(x % 24)
+		let hours = Math.floor(x % 24)
 		// transform to days
-		days = Math.floor(x / 24)
+		let days = Math.floor(x / 24)
 		const result = {seconds: seconds, minutes: minutes, hours:hours, days: days}
 		return result
 	}
+}
+
+// this is extra and only for webpack use
+module.exports = {
+	getHFTimeMs: timerFunc.getHFTimeMs,
+	msToTime: timerFunc.msToTime
 }
