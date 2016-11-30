@@ -48,25 +48,28 @@ router.route('/success/check')
 router.route('/success/matchedHF')
 	.get((req, res) => {
 		// find the username of the matching hf. 
-		db.User.findById(req.session.matchedHF.hfgive.userId)
-		.then (HFGiveUser => {
+		// db.User.findById(req.session.matchedHF.hfgive.userId)
+		// .then (HFGiveUser => {
 			console.log(req.session.matchedHF)
 			// create object with only the specific data to send back.
 			let data = {
 				HFAskTime: req.session.matchedHF.createdAt,
 				HFAskLocation: req.session.matchedHF.location,
-				HFAskUserName: req.session.matchedHF.user.name,
+				HFAskUserName: req.session.matchedHF.username,
 				HFGiveTime: req.session.matchedHF.hfgive.createdAt,
 				HFGiveLocation: req.session.matchedHF.hfgive.location,
-				HFGiveUserName: HFGiveUser.name
+				HFGiveUserName: req.session.matchedHF.hfgive.username,
 			}
 			res.send(data)
 			// clear session data of the match
-			db.HFAsk.findById(req.session.matchedHF.id).then(match => match.destroy())
+			if (req.session.matchedPath === 'HFAsk') {
+				db.HFAsk.findById(req.session.matchedHF.id).then(match => match.destroy())
+			}
 
 			req.session.matchedHF = ''
 			req.session.matchedPath = ''
-		})
+			// req.session.hfgive = ''
+		// })
 	})
 
 // module.exports says: the current file when required will send back this thing

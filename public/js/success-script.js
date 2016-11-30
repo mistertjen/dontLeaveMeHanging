@@ -10,12 +10,14 @@ if($('#success').length > 0) {
 		let timeObj = timerFunc.msToTime(difference)
 		
 		// uses es6 template string
-		if($('#asker')) {
+		if($('#asker').length > 0) {
+			// console.log('ask route')
 			let successMessage = `${data.HFGiveUserName} from ${data.HFGiveLocation} left you hanging for: ${timeObj.days} days, ${timeObj.hours} hours, ${timeObj.minutes} minutes, ${timeObj.seconds} seconds. `
 			$('#success-message').html(successMessage)
 		}
 
-		if($('#giver')) {
+		if($('#giver').length > 0) {
+			// console.log('give route')
 			let successMessage = `You left ${data.HFAskUserName} from ${data.HFAskLocation} hanging for: ${timeObj.days} days, ${timeObj.hours} hours, ${timeObj.minutes} minutes, ${timeObj.seconds} seconds. `
 			$('#success-message').html(successMessage)
 		}

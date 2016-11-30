@@ -31,11 +31,16 @@ router.route('/profile')
 					where: {
 						userId: req.session.user.id
 					},
-					include: [{all:true}]
+					include: [{
+						all:true,
+						paranoid: false
+					}]
 				})
 			])
 			.then(resolvedHFs => {
 				// declare variables here so results from inside the if-else-block statements can be passed to the pug file
+				console.log(resolvedHFs[0])
+				console.log(resolvedHFs[1])
 				let askResult = ""
 				let giveResult = ""
 
@@ -153,6 +158,9 @@ router.route('/profile/changeEmail')
 		if (req.body.newEmail.length > 255) {res.redirect('/profile?message=' + encodeURIComponent("Input cannot be longer than 255 characters"))}	
 		else if (req.body.newEmail !== req.body.confirmNewEmail) res.redirect('/profile?message=' + encodeURIComponent('Email doesn\'t match.'))
 		else if (req.body.newEmail) {
+			console.log('here')
+			console.log(req.session.user)
+			
 			db.User.update({
 				email: req.body.newEmail
 			}, {
@@ -165,7 +173,10 @@ router.route('/profile/changeEmail')
 					// id: 1
 				}
 			})
-			.then(x => res.redirect('/profile?message=' + encodeURIComponent('Email successfully changed.')))
+			.then(x => {
+				req.session.user.email = req.body.newEmail
+				res.redirect('/profile?message=' + encodeURIComponent('Email successfully changed.'))
+			})
 			.catch(x => res.redirect('/profile?message=' + encodeURIComponent('Emailaddress already exists.')))
 		}
 	})
@@ -174,7 +185,6 @@ router.route('/profile/changeName')
 	.post((req, res) => {
 		if (req.body.newName.length > 255) {res.redirect('/profile?message=' + encodeURIComponent("Input cannot be longer than 255 characters"))}
 		else if (req.body.newName) {
-			req.session.user.name = req.body.newName
 			db.User.update({
 				name: req.body.newName
 			}, {
@@ -188,6 +198,7 @@ router.route('/profile/changeName')
 				}
 			})
 			.then(user => {
+				req.session.user.name = req.body.newName
 				res.redirect('/profile?message=' + encodeURIComponent('Name successfully changed.'))
 			})
 		}

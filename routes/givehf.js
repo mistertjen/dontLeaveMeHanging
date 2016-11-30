@@ -84,10 +84,12 @@ router.route('/givehf')
 								})
 								.then( (hfask) => {
 								// add hfgive obj to the updated hfask
-								hfask.dataValues.hfgive = hfgive
 								// set session data
+								hfask.dataValues.hfgive = hfgive
 								req.session.matchedPath = 'HFGive'
 								req.session.matchedHF = hfask
+								
+								// req.session.hfgive = hfgive
 
 								// there's a match so redirect to /success
 								res.redirect('/success')
@@ -160,6 +162,8 @@ router.route('/givehf')
 								hfask.dataValues.hfgive = hfgive
 								req.session.matchedPath = 'HFGive'
 								req.session.matchedHF = hfask
+
+								// req.session.hfgive = hfgive
 
 								// there's a match so redirect to /success
 								res.redirect('/success')
