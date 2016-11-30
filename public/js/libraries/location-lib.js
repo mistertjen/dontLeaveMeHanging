@@ -1,3 +1,6 @@
+// this is extra and only for webpack use
+let $ = require('jquery')
+
 // location library with all functions concerning location in an object
 const locationFunc = {
 	// get location function

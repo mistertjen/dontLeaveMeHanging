@@ -1,4 +1,5 @@
 // this is extra and only for webpack use
+let $ = require('jquery')
 const locationFunc = require(__dirname + '/location-lib')
 
 // check library with all functions concerning checking the database
