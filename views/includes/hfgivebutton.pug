@@ -5,6 +5,8 @@ div.col.s4.offset-s4
 	form#hfgiveform(action='/givehf' method='POST')
 		//- navigator is front-end function so getlocation must be done here, and posted to server
 		button#hfgivebutton.hfgivebutton.waves-effect.waves-light.btn-large(type='submit')
+			//- materialize preloader, changes colors
+			//- changed google colors to own colors in _index.scss
 			div.preloader-wrapper.small.active
 				div.spinner-layer.spinner-blue
 					div.circle-clipper.left

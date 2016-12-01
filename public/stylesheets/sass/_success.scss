@@ -42,6 +42,10 @@ body {
 				background-color: $hover-color;
 			}
 		}
+
+		.btn-large.disabled {
+			background-color: $HFAsk-color-light !important;
+		}
 	}
 
 	.hoverable:hover {
