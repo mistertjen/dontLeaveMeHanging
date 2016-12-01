@@ -10664,7 +10664,7 @@
 
 
 	// module
-	exports.push([module.id, "@font-face {\n  font-family: FFF-forward;\n  src: url(/stylesheets/fonts/FFFFORWA.TTF); }\n\nh1, h2, h3, h4, h5, h6 {\n  font-family: FFF-forward;\n  color: white;\n  text-shadow: 5px 5px 0px black; }\n\nbody {\n  background-color: #24e5c8; }\n", ""]);
+	exports.push([module.id, "@font-face {\n  font-family: FFF-forward;\n  src: url(/stylesheets/fonts/FFFFORWA.TTF); }\n\nbody#success .container {\n  margin-top: 30px; }\n\nbody#success .success {\n  line-height: 2em;\n  letter-spacing: 3px;\n  font-size: 80px; }\n\nbody#success img {\n  width: 100%; }\n\nbody#success img#ask {\n  -webkit-filter: drop-shadow(10px 10px 0px #bf45ad); }\n\nbody#success img#give {\n  -webkit-filter: drop-shadow(10px 10px 0px #066c5d); }\n\nbody#success h1 {\n  margin: 0px; }\n\nbody#success .card {\n  border: 3px solid black;\n  font-weight: bold;\n  letter-spacing: 1.8px; }\n  body#success .card p#success-message {\n    font-size: 25px; }\n  body#success .card .btn-large {\n    background-color: #066c5d; }\n    body#success .card .btn-large:hover {\n      background-color: #24e5c8; }\n\nbody#success .hoverable:hover {\n  box-shadow: 10px 10px 0px #bf45ad; }\n\nh1, h2, h3, h4, h5, h6 {\n  font-family: FFF-forward;\n  color: white;\n  text-shadow: 5px 5px 0px black; }\n\nbody {\n  background-color: #24e5c8; }\n", ""]);
 
 	// exports
 
