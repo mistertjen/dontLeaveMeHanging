@@ -3,18 +3,45 @@ html
 	
 	body#profile
 		include includes/nav.pug
-		include includes/profile-show-name-email.pug
+		main.container
+			section.row.user-info-container
+				.col.s6
+					include includes/profile-show-name-email.pug
+					include includes/logout.pug
+				ul.collapsible.popout(data-collapsible="accordion").col.s5.offset-s1
+					li.collapsible-item
+						include includes/profile-change-email.pug
+					li.collapsible-item
+						include includes/profile-change-name.pug
+					li.collapsible-item
+						include includes/profile-change-password.pug
 
-		include includes/profile-change-email.pug
-
-		include includes/profile-change-name.pug
-
-		include includes/profile-change-password.pug
-
-		include includes/logout.pug
-
-		include includes/askresult.pug
-
-		include includes/giveresult.pug
+			section.row.hf-history-container
+				.col.s6
+					include includes/askresult.pug
+				.col.s6
+					include includes/giveresult.pug
 
 		include includes/footer.pug
+
+	script.
+		$(document).ready(function(){
+			$('.collapsible').collapsible();
+		});
+		
+		$('.collapsible-item').on('click', x => {
+			console.log(x)
+			$('.collapsible-item').removeClass('highlight-shadow')
+			// check if class not already active, then add 
+			//- console.log(x)
+			if (!/ active/.test(x.currentTarget.className))
+				$(x.currentTarget).addClass('highlight-shadow')
+		})
+
+		$('.collapsible-header').on('click', x => {
+			$('.collapsible-header').removeClass('stay-active')
+			// check if class not already active, then add 
+			//- console.log(x)
+			if (!/ active/.test(x.currentTarget.className))
+				$(x.currentTarget).addClass('stay-active')
+		})

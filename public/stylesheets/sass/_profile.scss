@@ -1,0 +1,95 @@
+#profile {
+	main.container {
+
+		section {
+			margin-top:40px;
+		}
+		
+		h1, h2, h3, h4, h5 {
+			line-height:2em;
+			letter-spacing: 3px;
+			margin:0px;
+		}
+
+		li {
+			margin-top: 10px;
+		}
+
+		.hoverable:hover {
+			box-shadow: 4px 4px 0px $HFGive-color-dark;
+				// box-shadow:none;
+				// border: 4px solid $HFGive-color-dark
+			}
+		
+		.collapsible-header {
+			background-color: $secondary-color;
+			border: 1px solid $secondary-color;
+			padding-top:10px;
+			padding-bottom:10px;
+			&:hover {
+				background-color: $primary-color;
+			}
+			h4 {
+				font-size:20px;
+				letter-spacing: 3px;
+				text-shadow: 3px 3px 0px black;
+			}
+		}
+		
+		.collapsible-item {
+			border: 2px solid black;
+			box-shadow: 5px 5px 0px black;
+			// .active {
+			// 	box-shadow: 4px 4px 0px $HFGive-color-dark;
+			// }
+		}
+
+		.stay-active {
+			background-color: $primary-color;
+		}
+
+		.highlight-shadow {
+			box-shadow: 4px 4px 0px $HFGive-color-dark;
+		}
+
+		button {
+			color:white;
+			// background-color: $primary-color;
+			background-color: $secondary-color;
+			box-shadow: 5px 5px 0px black;
+			&:hover {
+				// background-color: $secondary-color;
+				background-color: $primary-color;
+				// box-shadow: 5px 5px 0px $HFGive-color-dark;
+			}
+		}
+		
+		.card {
+			border: 3px solid black;
+		}		
+
+		.collapsible-body {
+			background-color: white;
+			padding: 15px;
+		}
+
+		input, label, button, span, p {
+			font-weight: bold;
+			letter-spacing: 1.8px;
+			font-size:14px;
+		}
+
+		p {
+			margin-top: 10px;
+			&:first-child {
+				margin-top: 0px;
+			}
+		}
+
+		.hf-history-container {
+			h3 {
+				font-size: 36px;
+			}
+		}
+	}
+}

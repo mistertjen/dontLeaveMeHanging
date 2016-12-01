@@ -1,6 +1,9 @@
-div.change-name-container
+.collapsible-header.waves-effect.waves-light
 	h4 Change name
+.collapsible-body
 	form(name='newNameForm' method='POST' action='/profile/changeName')
-		input(name='newName' id='newName' type='text')
-		label(for='newName') New name
-		input(type='submit' value='Confirm')
+		.row
+			.input-field.col.s12
+				input(name='newName' id='newName' type='text')
+				label(for='newName') New name
+		button.btn.waves-effect.waves-light(type='submit') Confirm

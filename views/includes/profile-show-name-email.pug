@@ -1,3 +1,6 @@
-h4=user.name
-h5=user.email
-h5=message
+h2 #{user.name}
+.card.hoverable
+	.card-content 
+		p #{user.email}
+		if (message)
+			p.message #{message}
