@@ -1,14 +1,18 @@
 if matchedPath === 'HFAsk'
-	h4#asker You received a high five!
+	h4#asker YAY, YOU RECEIVED A HIGH FIVE!
+	img#give(src="images/highfive_give_pink.png", alt="high five")
 	p#success-message
-	a(href='/')
-		button Ok cool
+	a.waves-effect.waves-light.btn-large(href='/') Ok cool
+		i.material-icons.right thumb_up
+
 
 if matchedPath === 'HFGive'
-	h4#giver You gave a high five!
+	h4#giver YAY, YOU GAVE A HIGH FIVE!
+	img#ask(src="images/highfive_mint.png", alt="high five")
 	p#success-message
-	a(href='/')
-		button Ok cool
+	a.waves-effect.waves-light.btn-large(href='/') Ok cool
+		i.material-icons.right thumb_up
+		
 
 if matchedPath === null
 	p

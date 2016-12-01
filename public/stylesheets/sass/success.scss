@@ -1,0 +1,16 @@
+img#ask {
+	drop-shadow: 50px 50px 0px black;
+	-webkit-filter: drop-shadow(10px 10px 0px $HFGive-color-dark);
+}
+
+img#give {
+	drop-shadow: 50px 50px 0px black;
+	-webkit-filter: drop-shadow(10px 10px 0px $secondary-color);
+}
+
+p#success-message {
+	color: white;
+    text-shadow: 3px 3px 0px black;
+    font-weight: bold;
+    font-size: 30px;
+}
