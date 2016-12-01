@@ -20,4 +20,23 @@ body#index {
 	.hoverable:hover {
 		box-shadow: 5px 5px 0px $HFGive-color-dark;
 	}
+
+	// changed google-colors (blue, red, yellow, green) to our colors
+	// so animation of spinner changes in our colors
+	.spinner-blue {
+		border-color: $secondary-color;
+	}
+
+	.spinner-red {
+		border-color: $primary-color;
+	}
+
+	.spinner-yellow {
+		border-color: $HFGive-color;
+	}
+
+	.spinner-green {
+		border-color: $HFGive-color-dark;
+	}
+
 }
