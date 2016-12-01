@@ -17,6 +17,10 @@ body#index {
 			}
 	}
 
+	.btn-large.disabled {
+		background-color: $HFAsk-color-light !important;
+	}
+
 	.hoverable:hover {
 		box-shadow: 5px 5px 0px $HFGive-color-dark;
 	}
