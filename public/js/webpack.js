@@ -10664,7 +10664,7 @@
 
 
 	// module
-	exports.push([module.id, "@font-face {\n  font-family: FFF-forward;\n  src: url(/stylesheets/fonts/FFFFORWA.TTF); }\n\nh1, h2, h3, h4, h5, h6 {\n  font-family: FFF-forward;\n  color: white;\n  text-shadow: 5px 5px 0px black; }\n\nbody {\n  background-color: #24e5c8; }\n", ""]);
+	exports.push([module.id, "@font-face {\n  font-family: FFF-forward;\n  src: url(/stylesheets/fonts/FFFFORWA.TTF); }\n\nsection {\n  margin-top: 80px;\n  margin-bottom: 80px; }\n\n.title-container {\n  margin-top: 50px;\n  margin-bottom: 90px; }\n\n.title {\n  line-height: 2em;\n  letter-spacing: 3px;\n  font-size: 80px; }\n\ninput {\n  color: white; }\n\n.form-title {\n  margin-bottom: 35px; }\n\n.card {\n  border: 3px solid black; }\n\np {\n  color: white;\n  text-shadow: 3px 3px 0px black;\n  font-weight: bold;\n  font-size: 30px; }\n\nh1, h2, h3, h4, h5, h6 {\n  font-family: FFF-forward;\n  color: white;\n  text-shadow: 5px 5px 0px black; }\n\nbody {\n  background-color: #24e5c8; }\n", ""]);
 
 	// exports
 
