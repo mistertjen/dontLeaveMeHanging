@@ -2,8 +2,15 @@ html
 	include includes/header.pug
 	
 	body
-		include includes/register.pug
-		include includes/login.pug
-		//- shows message when it's send from the backend 
-		h5#errormessage=message
+		main.container
+			//- h1 DON'T LEAVE ME HANGING
+			section.row.title-container
+				h2.title Don't leave me hanging
+
+			include includes/register.pug
+			
+			include includes/login.pug
+			
+			//- shows message when it's send from the backend 
+			h5#errormessage=message
 		include includes/footer.pug
