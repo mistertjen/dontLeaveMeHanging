@@ -1,0 +1,38 @@
+nav {
+	background-color: $secondary-color;
+	
+	ul {
+		a {
+			font-family: $title-font;
+			color: white;
+			text-shadow: 4px 4px 0px black;
+			font-size:24px;
+			letter-spacing: 3px;
+		}
+	}
+
+	// .small-link {
+	// 	font-size:20px;	
+	// }
+
+	@media screen and (max-width: 610px) {
+		ul {
+			a {
+				font-size:16px;
+				text-shadow: 3px 3px 0px black;
+			}
+		}
+		// .small-link {
+		// 	font-size:14px;	
+		// }
+	}
+
+	@media screen and (max-width: 450px) {	
+		ul {
+			a {
+				font-size:12px;
+				text-shadow: 2px 2px 0px black;
+			}
+		}
+	}
+}
