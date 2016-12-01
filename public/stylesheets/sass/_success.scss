@@ -43,7 +43,7 @@ body {
 			}
 		}
 
-		.btn-large.disabled {
+		.btn-large:disabled {
 			background-color: $HFAsk-color-light !important;
 		}
 	}
