@@ -3,6 +3,10 @@ let $ = require('jquery')
 const timerFunc = require(__dirname + '/../libraries/timer-lib')
 
 if($('#success').length > 0) {
+	// play highfive sound when you reach success
+	var audio = new Audio('../sounds/highfive.wav');
+	audio.play();
+
 	$.get('/success/matchedHF', data => {
 		let HFAskTime = Date.parse(data.HFAskTime) // in ms
 		let HFGiveTime = Date.parse(data.HFGiveTime) // in ms
@@ -27,5 +31,3 @@ if($('#success').length > 0) {
 		}
 	})
 }
-	
-	//- let .html(timeString)
