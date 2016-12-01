@@ -1,0 +1,18 @@
+html
+	include includes/header.pug
+	
+	body#register-login
+		main.container
+			section.row.title-container
+				h1.title Don't leave me hanging
+				//- h1.title DON'T LEAVE ME HANGING
+
+			section.register-container.row
+				.form-container.col.l5.m5.s11
+					include includes/register.pug
+				.form-container.col.l5.offset-l1.m5.offset-m1.s11
+					include includes/login.pug
+			
+			//- shows message when it's send from the backend 
+			h5#errormessage=message
+		include includes/footer.pug
