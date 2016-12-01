@@ -1,0 +1,9 @@
+html
+	include includes/header.pug
+	
+	body
+		include includes/register.pug
+		include includes/login.pug
+		//- shows message when it's send from the backend 
+		h5#errormessage=message
+		include includes/footer.pug
