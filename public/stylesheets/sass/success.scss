@@ -1,4 +1,4 @@
-body#success {
+body {
 
 	.container {
 		margin-top:30px;
@@ -37,8 +37,9 @@ body#success {
 
 		.btn-large {
 			background-color: $secondary-color;
+			box-shadow: 5px 5px 0px black;
 			&:hover {
-				background-color: $primary-color;
+				background-color: $hover-color;
 			}
 		}
 	}

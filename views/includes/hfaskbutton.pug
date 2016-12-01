@@ -1,5 +1,10 @@
-p Calculating your location...
-//- when button is clicked post request to askhf which creates high five
-form#hfaskform(action='/askhf' method='POST')
-	//- navigator is front-end function so getlocation must be done here, and posted to server
-	button#hfaskbutton(type='submit') Don't leave me hanging
+div.row
+	div.col.s4
+		img#ask(src="images/highfive_mint.png", alt="high five")
+		//- p Calculating your location...
+		//- when button is clicked post request to askhf which creates high five
+		form#hfaskform(action='/askhf' method='POST')
+			//- navigator is front-end function so getlocation must be done here, and posted to server
+			button#hfaskbutton.waves-effect.waves-light.btn-large(type='submit') Don't leave me hanging
+		include timer-counter.pug
+	include hfgivebutton.pug

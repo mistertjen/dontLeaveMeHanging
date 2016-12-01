@@ -1,5 +1,7 @@
-p Checking if someone's hanging...
-//- when button is clicked post request to askhf which creates high five
-form#hfgiveform(action='/givehf' method='POST')
-	//- navigator is front-end function so getlocation must be done here, and posted to server
-	button#hfgivebutton(type='submit') Give some love
+div.col.s4.offset-s4
+	img#give(src="images/highfive_give_pink.png", alt="high five")
+	//- p Checking if someone's hanging...
+	//- when button is clicked post request to askhf which creates high five
+	form#hfgiveform(action='/givehf' method='POST')
+		//- navigator is front-end function so getlocation must be done here, and posted to server
+		button#hfgivebutton.waves-effect.waves-light.btn-large(type='submit') Give some love
