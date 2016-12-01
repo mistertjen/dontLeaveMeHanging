@@ -1,7 +1,13 @@
-h1 Log in
-form(action='/login' method='POST')
-	label
-	input(name='loginemail' placeholder='Email' required autofocus pattern='.{1,255}' title="User name can't be more than 255 characters")
-	label
-	input(name='loginpassword' placeholder='Password' type='password' required pattern='.{1,255}' title="Password can't be more than 255 characters")
-	button(type='submit') Log in
+h3.form-title Login
+.card.hoverable
+	.card-content
+		form(action='/login' method='POST')
+			.row
+				.input-field.col.s12
+					input(name='loginemail' id='login-email' type='text' required autofocus pattern='.{1,255}' title="User name can't be more than 255 characters")
+					label(for='login-email') Email
+			.row
+				.input-field.col.s12
+					input(name='loginpassword' id='login-password' type='password' required pattern='.{1,255}' title="Password can't be more than 255 characters")
+					label(for='login-password') Password
+			button.btn.waves-effect.waves-light(type='submit') Login
