@@ -1,0 +1,54 @@
+body {
+
+	.container {
+		margin-top:30px;
+	}
+
+	.success {
+		line-height:2em;
+		letter-spacing: 3px;
+		font-size: 80px;
+	}
+
+	img {
+		width: 100%;
+	}
+
+	img#ask {
+		-webkit-filter: drop-shadow(10px 10px 0px $HFGive-color-dark);
+	}
+
+	img#give {
+		-webkit-filter: drop-shadow(10px 10px 0px $secondary-color);
+	}
+
+	h1 {
+		margin:0px
+	}
+
+	.card {
+		border: 3px solid black;
+		font-weight: bold;
+		letter-spacing: 1.8px;
+
+		p#success-message {
+			font-size: 25px;
+		}
+
+		.btn-large {
+			background-color: $secondary-color;
+			box-shadow: 5px 5px 0px black;
+			&:hover {
+				background-color: $hover-color;
+			}
+		}
+
+		.btn-large.disabled {
+			background-color: $HFAsk-color-light !important;
+		}
+	}
+
+	.hoverable:hover {
+		box-shadow: 10px 10px 0px $HFGive-color-dark;
+	}
+}

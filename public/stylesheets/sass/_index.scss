@@ -1,0 +1,46 @@
+body#index {
+	form#hfaskform {
+		text-align: right;
+	}
+
+	form#hfgiveform {
+		text-align: left;
+	}
+
+	.btn-large {
+		background-color: $secondary-color;
+		box-shadow: 5px 5px 0px black;
+		width: 100%;
+		margin-top: 20px;
+			&:hover {
+				background-color: $hover-color;
+			}
+	}
+
+	.btn-large.disabled {
+		background-color: $HFAsk-color-light !important;
+	}
+
+	.hoverable:hover {
+		box-shadow: 5px 5px 0px $HFGive-color-dark;
+	}
+
+	// changed google-colors (blue, red, yellow, green) to our colors
+	// so animation of spinner changes in our colors
+	.spinner-blue {
+		border-color: $secondary-color;
+	}
+
+	.spinner-red {
+		border-color: $primary-color;
+	}
+
+	.spinner-yellow {
+		border-color: $HFGive-color;
+	}
+
+	.spinner-green {
+		border-color: $HFGive-color-dark;
+	}
+
+}

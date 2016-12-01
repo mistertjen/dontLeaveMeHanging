@@ -1,0 +1,38 @@
+div.col.s4.offset-s4
+	img#give(src="images/highfive_give_pink.png", alt="high five")
+	//- p Checking if someone's hanging...
+	//- when button is clicked post request to askhf which creates high five
+	form#hfgiveform(action='/givehf' method='POST')
+		//- navigator is front-end function so getlocation must be done here, and posted to server
+		button#hfgivebutton.hfgivebutton.waves-effect.waves-light.btn-large(type='submit')
+			//- materialize preloader, changes colors
+			//- changed google colors to own colors in _index.scss
+			div.preloader-wrapper.small.active
+				div.spinner-layer.spinner-blue
+					div.circle-clipper.left
+						div.circle
+					div.gap-patch
+						div.circle
+					div.circle-clipper.right
+						div.circle
+				div.spinner-layer.spinner-red
+					div.circle-clipper.left
+						div.circle
+					div.gap-patch
+						div.circle
+					div.circle-clipper.right
+						div.circle
+				div.spinner-layer.spinner-yellow
+					div.circle-clipper.left
+						div.circle
+					div.gap-patch
+						div.circle
+					div.circle-clipper.right
+						div.circle
+				div.spinner-layer.spinner-green
+					div.circle-clipper.left
+						div.circle
+					div.gap-patch
+						div.circle
+					div.circle-clipper.right
+						div.circle
