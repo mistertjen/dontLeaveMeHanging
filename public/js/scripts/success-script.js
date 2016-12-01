@@ -31,5 +31,3 @@ if($('#success').length > 0) {
 		}
 	})
 }
-	
-	//- let .html(timeString)
