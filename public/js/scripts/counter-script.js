@@ -16,9 +16,11 @@ if ($('.timer').length > 0) {
 			// save the resulting obj from msToTime
 			let timeObj = timerFunc.msToTime(difference)
 			// uses es6 template string
-			let timeString = `You have been left having for: ${timeObj.days} days, ${timeObj.hours} hours, ${timeObj.minutes} minutes, ${timeObj.seconds} seconds. `
+			let timeString = `You have been hanging for: ${timeObj.days} days, ${timeObj.hours} hours, ${timeObj.minutes} minutes, ${timeObj.seconds} seconds. `
 			target.html(timeString)
-			difference += 1000		
+			$('#timer-card').show()
+			$('#hfaskbutton').hide()
+			difference += 1000
 		}
 
 		// initial action call and then again every 1000ms
