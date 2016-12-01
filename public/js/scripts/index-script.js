@@ -10,6 +10,7 @@ if($('#index').length > 0) {
 	// disable hfaskbutton, because first location should be known + should only enable when you don't already have one hanging
 	locationFunc.disableButton('hfaskbutton')
 	locationFunc.disableButton('hfgivebutton')
+	$('#timer-card').hide()
 	
 	// Do the intial check and pass userlocation to be set on the button submit as soon as it's known.
 	checkFunc.buttonHFGive( userlocation => {

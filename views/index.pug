@@ -2,14 +2,16 @@ html
 	include includes/header.pug
 	
 	body#index
-		include includes/nav.pug
-		include includes/hfaskbutton.pug
-		include includes/timer-counter.pug
-		include includes/hfgivebutton.pug
-		//- show an alert when somebody gave a high five just before you
-		script.
-			if(window.location.search === "?message=Oops"){
-				alert("Oops! Somebody beat you to it.")
-			}
-		include includes/footer.pug
+		div.container
+			include includes/nav.pug
+			include includes/hfaskbutton.pug
+			//- included in hfaskbutton.pug for styling in grid
+			//- include includes/timer-counter.pug
+			//- include includes/hfgivebutton.pug
+			//- show an alert when somebody gave a high five just before you
+			script.
+				if(window.location.search === "?message=Oops"){
+					alert("Oops! Somebody beat you to it.")
+				}
+			include includes/footer.pug
 			
