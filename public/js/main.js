@@ -18,3 +18,12 @@ require(__dirname + '/scripts/success-script')
 // stylesheets
 // these are all also necessary to require here, these are all the files to be loaded.
 require(__dirname + '/../stylesheets/sass/main.scss')
+
+$(document).ready( () => {
+	$( () => {
+		//highlight current nav
+		// looks for # on body, and if a (link) contains the string, than adds a class to that link: active
+		$("#index a:contains('Don')").parent().addClass('active');
+		$("#profile a:contains('Profile')").parent().addClass('active');
+	})
+});
