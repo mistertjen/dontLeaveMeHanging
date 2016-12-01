@@ -1,16 +1,49 @@
-img#ask {
-	drop-shadow: 50px 50px 0px black;
-	-webkit-filter: drop-shadow(10px 10px 0px $HFGive-color-dark);
-}
+body#success {
 
-img#give {
-	drop-shadow: 50px 50px 0px black;
-	-webkit-filter: drop-shadow(10px 10px 0px $secondary-color);
-}
+	.container {
+		margin-top:30px;
+	}
 
-p#success-message {
-	color: white;
-    text-shadow: 3px 3px 0px black;
-    font-weight: bold;
-    font-size: 30px;
+	.success {
+		line-height:2em;
+		letter-spacing: 3px;
+		font-size: 80px;
+	}
+
+	img {
+		width: 100%;
+	}
+
+	img#ask {
+		-webkit-filter: drop-shadow(10px 10px 0px $HFGive-color-dark);
+	}
+
+	img#give {
+		-webkit-filter: drop-shadow(10px 10px 0px $secondary-color);
+	}
+
+	h1 {
+		margin:0px
+	}
+
+	.card {
+		border: 3px solid black;
+		font-weight: bold;
+		letter-spacing: 1.8px;
+
+		p#success-message {
+			font-size: 25px;
+		}
+
+		.btn-large {
+			background-color: $secondary-color;
+			&:hover {
+				background-color: $primary-color;
+			}
+		}
+	}
+
+	.hoverable:hover {
+		box-shadow: 10px 10px 0px $HFGive-color-dark;
+	}
 }
