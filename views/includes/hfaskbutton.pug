@@ -5,6 +5,37 @@ div.row
 		//- when button is clicked post request to askhf which creates high five
 		form#hfaskform(action='/askhf' method='POST')
 			//- navigator is front-end function so getlocation must be done here, and posted to server
-			button#hfaskbutton.waves-effect.waves-light.btn-large(type='submit') Don't leave me hanging
+			button#hfaskbutton.hfaskbutton.waves-effect.waves-light.btn-large(type='submit')
+				//- materialize preloader, changes colors
+				//- changed google colors to own colors in _index.scss
+				div.preloader-wrapper.small.active
+					div.spinner-layer.spinner-blue
+						div.circle-clipper.left
+							div.circle
+						div.gap-patch
+							div.circle
+						div.circle-clipper.right
+							div.circle
+					div.spinner-layer.spinner-red
+						div.circle-clipper.left
+							div.circle
+						div.gap-patch
+							div.circle
+						div.circle-clipper.right
+							div.circle
+					div.spinner-layer.spinner-yellow
+						div.circle-clipper.left
+							div.circle
+						div.gap-patch
+							div.circle
+						div.circle-clipper.right
+							div.circle
+					div.spinner-layer.spinner-green
+						div.circle-clipper.left
+							div.circle
+						div.gap-patch
+							div.circle
+						div.circle-clipper.right
+							div.circle
 		include timer-counter.pug
 	include hfgivebutton.pug
