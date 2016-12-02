@@ -1,10 +1,14 @@
 body#index {
-	form#hfaskform {
-		text-align: right;
-	}
-
-	form#hfgiveform {
-		text-align: left;
+	// to vertically center, materialize sticky footer trick
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+	// to vertically center
+	.container {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		flex: 1 0 auto;
 	}
 
 	.btn-large {
@@ -44,3 +48,40 @@ body#index {
 	}
 
 }
+
+@media screen and (max-width: 1200px) {
+	.btn-large {
+		font-size: 12px;
+		white-space: normal !important;
+    	word-wrap: break-word;
+    	line-height: 11px;
+
+	}
+}
+
+@media screen and (max-width: 400px) {
+	.btn-large {
+		font-size: 14px;
+		white-space: normal !important;
+    	word-wrap: break-word;
+    	line-height: 11px;
+	}
+	.row .col.s5 {
+		width: 100%;
+	}
+	.row .col.offset-s2 {
+		margin-left: 0;
+	}
+}
+
+// @media screen and (max-width: 850px) {
+// 	.btn-large {
+// 		font-size: 10px;
+// 	}
+// }
+
+// @media screen and (max-width: 750px) {
+// 	.btn-large {
+// 		font-size: 6px;
+// 	}
+// }
