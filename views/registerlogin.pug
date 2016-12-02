@@ -12,7 +12,10 @@ html
 					include includes/register.pug
 				.form-container.col.l5.offset-l1.m5.offset-m1.s11
 					include includes/login.pug
+					if (message)
+						.card.hoverable
+							.card-content
+								p.message #{message}
 			
 			//- shows message when it's send from the backend 
-			h5#errormessage=message
 		include includes/footer.pug

@@ -1,5 +1,9 @@
 #register-login {
 
+	.message {
+		color: $HFGive-color-dark
+	}
+
 	section {
 		margin-top: 40px;
 	}
@@ -8,7 +12,8 @@
 		line-height:2em;
 		letter-spacing: 3px;
 		font-size: 80px;
-		margin:0px
+		margin:0px;
+		margin-left:10.5px
 	}
 
 	h3 {

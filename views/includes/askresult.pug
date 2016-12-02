@@ -1,4 +1,3 @@
-h3 Your received high fives
 .card.hoverable
 	.card-content 
 		//- if you don't have HFAsks that are resolved yet
@@ -10,4 +9,4 @@ h3 Your received high fives
 			each hfask in askResult
 				//- in script set message to show in p
 				- let message = `${hfask.HFGiveName} from ${hfask.HFGiveLocation} left you hanging for: ${hfask.HFTimeDifference.days} days, ${hfask.HFTimeDifference.hours} hours, ${hfask.HFTimeDifference.minutes} minutes, ${hfask.HFTimeDifference.seconds} seconds. `
-				p #{message}
+				p.hf-history-element #{message}

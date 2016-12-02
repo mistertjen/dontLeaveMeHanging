@@ -1,15 +1,21 @@
 #profile {
 	main.container {
 
-		section {
-			margin-top:40px;
-		}
-		
 		h1, h2, h3, h4, h5 {
 			line-height:2em;
 			letter-spacing: 3px;
 			margin:0px;
 		}
+
+		section {
+			margin-top:40px;
+		}
+
+		.message {
+			color: $HFGive-color-dark
+		}
+		
+
 
 		li {
 			margin-top: 10px;
@@ -17,10 +23,11 @@
 
 		.hoverable:hover {
 			box-shadow: 4px 4px 0px $HFGive-color-dark;
-				// box-shadow:none;
-				// border: 4px solid $HFGive-color-dark
-			}
+			// box-shadow:none;
+			// border: 4px solid $HFGive-color-dark
+		}
 		
+		//=COLLAPSIBLE
 		.collapsible-header {
 			background-color: $secondary-color;
 			border: 1px solid $secondary-color;
@@ -37,7 +44,7 @@
 		}
 		
 		.collapsible-item {
-			border: 2px solid black;
+			border: 3px solid black;
 			box-shadow: 5px 5px 0px black;
 			// .active {
 			// 	box-shadow: 4px 4px 0px $HFGive-color-dark;
@@ -89,6 +96,55 @@
 		.hf-history-container {
 			h3 {
 				font-size: 36px;
+			}
+		}
+
+		.username, .email {
+			overflow: auto;
+		}
+
+		.hf-history-element {
+			overflow:hidden;
+		}
+
+		// different popout behavior for large screen
+		@media screen and (min-width:993px) {
+			.collapsible-item, .message-item {
+				margin-right:0px;
+			}
+
+			.mobile-only {
+				display:none;
+			}
+
+			.desktop-only {
+				display:block
+			}
+		}
+
+		// different popout behavior for small and medium screens
+		@media screen and (max-width:992px) {
+			.collapsible-item, .message-item {
+				margin-left:0px;
+				margin-right:0px;
+			}
+
+			.mobile-only {
+				display:block;
+			}
+
+			.desktop-only {
+				display: none;
+			}
+		}
+
+		@media screen and (max-width:992px) {
+			.mobile-section {
+				margin-top:30px;
+			}
+
+			section {
+				margin-top:0px;
 			}
 		}
 	}

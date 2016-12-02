@@ -40,4 +40,14 @@ nav {
 			}
 		}
 	}
+
+	@media screen and (max-width: 375px) {
+		ul {
+			a {
+				font-size:11px;
+				text-shadow: 2px 2px 0px black;
+				letter-spacing: 1.5px
+			}
+		}
+	}
 }

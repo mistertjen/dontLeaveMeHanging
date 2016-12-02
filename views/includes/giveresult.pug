@@ -1,4 +1,3 @@
-h3 Your given high fives
 .card.hoverable
 	.card-content
 		//- if you don't have HFGives yet
@@ -9,4 +8,4 @@ h3 Your given high fives
 		else 
 			each hfgive in giveResult
 				- let message = `You left ${hfgive.HFAskName} from ${hfgive.HFAskLocation} hanging for: ${hfgive.HFTimeDifference.days} days, ${hfgive.HFTimeDifference.hours} hours, ${hfgive.HFTimeDifference.minutes} minutes, ${hfgive.HFTimeDifference.seconds} seconds. `
-				p #{message}
+				p.hf-history-element #{message}
