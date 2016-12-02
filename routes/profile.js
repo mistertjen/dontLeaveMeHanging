@@ -9,7 +9,10 @@ const bcrypt = require('bcrypt')
 router.route('/profile')
 	.get((req, res) => {
 		let user = req.session.user;
-		if(user){
+		if(!user){
+			res.render('registerlogin', {message: "Please login to view your profile."})
+		}
+		else {
 			Promise.all([
 				db.HFAsk.findAll({
 					where: {
@@ -148,15 +151,13 @@ router.route('/profile')
 				// render profile with user data, message (such as password change), askResult and giveResult
 				res.render('profile', {user: req.session.user, message: req.query.message, askResult: askResult, giveResult: giveResult})
 			})
-		} else {
-			res.render('registerlogin', {message: "Please, log in to view your profile."})
 		}
 	})
 
 router.route('/profile/changeEmail')
 	.post((req, res) => {
 		// error handling
-		if (req.body.newEmail.length > 255) {res.redirect('/profile?message=' + encodeURIComponent("Input cannot be longer than 255 characters"))}	
+		if (req.body.newEmail.length > 50) {res.redirect('/profile?message=' + encodeURIComponent("Email cannot be longer than 50 characters."))}	
 		else if (req.body.newEmail !== req.body.confirmNewEmail) res.redirect('/profile?message=' + encodeURIComponent('Email doesn\'t match.'))
 		// database and session update
 		else if (req.body.newEmail) {
@@ -174,12 +175,16 @@ router.route('/profile/changeEmail')
 			})
 			.catch(x => res.redirect('/profile?message=' + encodeURIComponent('Emailaddress already exists.')))
 		}
+		else {
+			console.log(`changeEMail error! Userinput: ${req.body}, userdata: ${req.session.name}, id: ${req.session.id}`)
+			res.redirect('/profile?message=' + encodeURIComponent('Unexpected error occured, please try again later.'))
+		}
 	})
 
 router.route('/profile/changeName')
 	.post((req, res) => {
 		// error handling
-		if (req.body.newName.length > 255) {res.redirect('/profile?message=' + encodeURIComponent("Input cannot be longer than 255 characters"))}
+		if (req.body.newName.length > 25) {res.redirect('/profile?message=' + encodeURIComponent("Username cannot be longer than 25 characters."))}
 		// database and session update
 		else if (req.body.newName) {
 			db.User.update({
@@ -192,8 +197,15 @@ router.route('/profile/changeName')
 			})
 			.then(user => {
 				req.session.user.name = req.body.newName
-				res.redirect('/profile?message=' + encodeURIComponent('Name successfully changed.'))
+				res.redirect('/profile?message=' + encodeURIComponent('Username successfully changed.'))
 			})
+		}
+		else if (req.body.newName.length === 0) {
+			res.redirect('/profile?message=' + encodeURIComponent('Username cannot be empty.'))
+		}
+		else {
+			console.log(`changeName error! Userinput: ${req.body}, userdata: ${req.session.name}, id: ${req.session.id}`)
+			res.redirect('/profile?message=' + encodeURIComponent('Unexpected error occured, please try again later.'))
 		}
 	})
 
@@ -201,7 +213,7 @@ router.route('/profile/changePassword')
 	.post((req, res) => {
 		// error handling
 		if (req.body.newPassword.length < 8) {res.redirect('/profile?message=' + encodeURIComponent('Please fill in a new password with 8 characters or more.'))}
-		else if (req.body.newPassword.length > 255) {res.redirect('/profile?message=' + encodeURIComponent("Input cannot be longer than 255 characters"))}
+		else if (req.body.newPassword.length > 255) {res.redirect('/profile?message=' + encodeURIComponent("Password cannot be longer than 255 characters."))}
 		else if (req.body.newPassword !== req.body.confirmNewPassword) {res.redirect('/profile?message=' + encodeURIComponent('New password doesn\'t match.'))}
 		// database update
 		else if (req.body.newPassword.length) {
@@ -216,6 +228,10 @@ router.route('/profile/changePassword')
 					})
 				})
 			})
+		}
+		else {
+			console.log(`changePassword error! Userinput: ${req.body}, userdata: ${req.session.name}, id: ${req.session.id}`)
+			res.redirect('/profile?message=' + encodeURIComponent('Unexpected error occured, please try again later.'))
 		}
 	})
 

@@ -14,15 +14,19 @@ router.route('/register')
 	.post((req, res) => {
 		// checks if a field is empty, then redirects with message
 		if(!req.body.name || !req.body.email || !req.body.password || !req.body.confirmPassword){
-			res.redirect('/?message=' + encodeURIComponent("Please fill in all fields to register"));
+			res.redirect('/?message=' + encodeURIComponent("Please fill in all fields to register."));
 		} else if(req.body.password.length < 8) {
 			// checks if password is shorter than 8 characters, then redirects with message
-			res.redirect('/?message=' + encodeURIComponent("Password must be at least 8 characters long"));
+			res.redirect('/?message=' + encodeURIComponent("Password must be at least 8 characters long."));
 		} else if(req.body.password != req.body.confirmPassword){
 			// checks if password and confirm password don't match, then redirects with message
-			res.redirect('/?message=' + encodeURIComponent("Please enter the same password twice to register"));
-		} else if (req.body.name.length > 255 || req.body.email.length > 255 || req.body.password.length > 255) {
-			res.redirect('/?message=' + encodeURIComponent("Input cannot be longer than 255 characters"));
+			res.redirect('/?message=' + encodeURIComponent("Please enter the same password twice to register."));
+		} else if (req.body.name.length > 25) {
+			res.redirect('/?message=' + encodeURIComponent("Username cannot be longer than 25 characters."));
+		} else if ( req.body.email.length > 50 ) {
+			res.redirect('/?message=' + encodeURIComponent("Email cannot be longer than 50 characters."));
+		} else if ( req.body.password.length > 255) {
+			res.redirect('/?message=' + encodeURIComponent("Password cannot be longer than 255 characters."));
 		} else {
 			// declare variable password which stores the password input under registration by user
 			let password = req.body.password;
@@ -40,7 +44,7 @@ router.route('/register')
 						password: 	hash
 						// catch when email isn't unique, redirect without adding to table users
 					}).catch( (err) => {
-						res.redirect('/?message=' + encodeURIComponent("Your email is already taken, please register with another email"));
+						res.redirect('/?message=' + encodeURIComponent("Your email is already taken, please register with another email."));
 						throw err
 					})
 					// when email is unique

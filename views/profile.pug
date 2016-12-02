@@ -3,18 +3,60 @@ html
 	
 	body#profile
 		include includes/nav.pug
-		include includes/profile-show-name-email.pug
+		main.container
+			section.row.user-info-container
+				.col.l6.m12.s12
+					include includes/profile-show-name-email.pug
+					include includes/logout.pug
+				ul.mobile-section.collapsible.popout(data-collapsible="accordion").col.l5.offset-l1.m12.s12
+					if (message)
+						li.message-item
+							.card.hoverable
+								.card-content
+									p.message #{message}
+					li.collapsible-item
+						include includes/profile-change-email.pug
+					li.collapsible-item
+						include includes/profile-change-name.pug
+					li.collapsible-item
+						include includes/profile-change-password.pug
 
-		include includes/profile-change-email.pug
+			section.row.hf-history-container.desktop-only
+				.hf-history.headers.col.l12.row
+					.col.l6
+						h3 Your received high fives
+					.col.l6
+						h3 Your given high fives
+				.hf-history.content.col.l12
+					.col.l6
+						include includes/askresult.pug
+					.col.l6
+						include includes/giveresult.pug
 
-		include includes/profile-change-name.pug
-
-		include includes/profile-change-password.pug
-
-		include includes/logout.pug
-
-		include includes/askresult.pug
-
-		include includes/giveresult.pug
+			section.row.hf-history-container.mobile-only
+				.hf-history-item.mobile-section.col.s12.m12
+					h3 Your received high fives
+					include includes/askresult.pug
+				.hf-history-item.mobile-section.col.s12.m12
+					h3 Your given high fives
+					include includes/giveresult.pug
 
 		include includes/footer.pug
+
+	script.
+		$(document).ready(function(){
+			$('.collapsible').collapsible();
+		});
+		
+		// extra styling to the collapsible popout
+		$('.collapsible-header').on('click', clickedElement => {
+			// remove all set highlighting classes
+			$('.collapsible-item').removeClass('highlight-shadow')
+			$('.collapsible-header').removeClass('stay-active')
+
+			// check if class not already active, then add
+			if (!/ active/.test(clickedElement.currentTarget.className))
+				$(clickedElement.currentTarget).addClass('stay-active')
+			if (!/ active/.test(clickedElement.currentTarget.parentElement.className))
+				$(clickedElement.currentTarget.parentElement).addClass('highlight-shadow')
+		})

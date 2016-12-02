@@ -6,12 +6,12 @@ h3.form-title Register
 			//- pattern that it isn't more than 255 characters
 			.row
 				.input-field.col.s12
-					input(name='name' id='register-name' type='text' required pattern='.{1,255}' title="User name can't be more than 255 characters")
-					label(for='register-name') Name
+					input(name='name' id='register-name' type='text' required pattern='.{1,25}' title="Username can't be more than 25 characters")
+					label(for='register-name') Username
 			//- type makes sure html will not submit (make post request to back end) when a field gets the wrong type of input
 			.row
 				.input-field.col.s12
-					input(name='email' id='register-email' type='email' required pattern='.{1,255}' title="Email can't be more than 255 characters")
+					input(name='email' id='register-email' type='email' required pattern='.{1,50}' title="Email can't be more than 50 characters")
 					label(for='register-email') Email
 			//- pattern makes sure lentgh is at least 8
 			//- onchange that it matches confirmPassword

@@ -4,7 +4,7 @@ h3.form-title Login
 		form(action='/login' method='POST')
 			.row
 				.input-field.col.s12
-					input(name='loginemail' id='login-email' type='text' required autofocus pattern='.{1,255}' title="User name can't be more than 255 characters")
+					input(name='loginemail' id='login-email' type='text' required autofocus pattern='.{1,50}' title="Email can't be more than 50 characters")
 					label(for='login-email') Email
 			.row
 				.input-field.col.s12

@@ -14,9 +14,11 @@ router.route('/login')
 	// When submit button is clicked on login.pug
 	.post((req, res) => {
 		if(!req.body.loginemail || !req.body.loginpassword){
-			res.redirect('/?message=' + encodeURIComponent("Please fill in all fields to login"));
-		} else if(req.body.loginemail.length > 255 || req.body.loginpassword.length > 255) {
-			res.redirect('/?message=' + encodeURIComponent("Input cannot be longer than 255 characters"));
+			res.redirect('/?message=' + encodeURIComponent("Please fill in all fields to login."));
+		} else if(req.body.loginemail.length > 50) {
+			res.redirect('/?message=' + encodeURIComponent("Email input cannot be longer than 255 characters."));
+		} else if (req.body.loginpassword.length > 255) {
+			res.redirect('/?message=' + encodeURIComponent("Password input cannot be longer than 255 characters."));
 		} else {
 			// declare variable password which stores the password input under login by user
 			let password = req.body.loginpassword;
@@ -28,7 +30,7 @@ router.route('/login')
 				}
 			}).then( (user) => {
 				if (!user) {
-					res.redirect('/?message=' + encodeURIComponent("Invalid email or password"));
+					res.redirect('/?message=' + encodeURIComponent("Invalid email or password."));
 					return
 				}
 				// compare (hashed) input by user for password under login, to his/her stored (hashed) password
@@ -43,7 +45,7 @@ router.route('/login')
 							res.redirect('/');
 						} else {
 							// redirect to login page and say name or password is incorrect 
-							res.redirect('/?message=' + encodeURIComponent("Invalid email or password"));
+							res.redirect('/?message=' + encodeURIComponent("Invalid email or password."));
 						}
 					}
 				})
