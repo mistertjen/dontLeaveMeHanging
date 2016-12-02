@@ -1,0 +1,12 @@
+//- if you don't have HFAsks that are resolved yet
+if (askResult == "You didn't receive a high five yet.")
+	p #{askResult}
+
+//- if you have HFAsks that are resolved, show each
+else 
+	each hfask in askResult
+		//- in script set message to show in p
+		- let message = `${hfask.HFGiveName} from ${hfask.HFGiveLocation} left you hanging for: ${hfask.HFTimeDifference.days} days, ${hfask.HFTimeDifference.hours} hours, ${hfask.HFTimeDifference.minutes} minutes, ${hfask.HFTimeDifference.seconds} seconds. `
+		.card.hoverable
+			.card-content 
+				p.hf-history-element #{message}

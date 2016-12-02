@@ -1,0 +1,74 @@
+body#index {
+	// to vertically center, materialize sticky footer trick
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+	// to vertically center
+	.container {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		flex: 1 0 auto;
+	}
+
+	.btn-large {
+		background-color: $secondary-color;
+		box-shadow: 5px 5px 0px black;
+		width: 100%;
+		margin-top: 20px;
+			&:hover {
+				background-color: $hover-color;
+			}
+	}
+
+	.btn-large:disabled {
+		background-color: $HFAsk-color-light !important;
+	}
+
+	.hoverable:hover {
+		box-shadow: 5px 5px 0px $HFGive-color-dark;
+	}
+
+	// changed google-colors (blue, red, yellow, green) to our colors
+	// so animation of spinner changes in our colors
+	.spinner-blue {
+		border-color: $secondary-color;
+	}
+
+	.spinner-red {
+		border-color: $primary-color;
+	}
+
+	.spinner-yellow {
+		border-color: $HFGive-color;
+	}
+
+	.spinner-green {
+		border-color: $HFGive-color-dark;
+	}
+
+	@media screen and (max-width: 1200px) {
+		.btn-large {
+			font-size: 12px;
+			white-space: normal !important;
+	    	word-wrap: break-word;
+	    	line-height: 11px;
+
+		}
+	}
+
+	@media screen and (max-width: 400px) {
+		.btn-large {
+			font-size: 14px;
+			white-space: normal !important;
+	    	word-wrap: break-word;
+	    	line-height: 11px;
+		}
+		.row .col.s5 {
+			width: 100%;
+		}
+		.row .col.offset-s2 {
+			margin-left: 0;
+		}
+	}
+}

@@ -1,0 +1,13 @@
+.collapsible-header.waves-effect.waves-light
+	h4 Change email
+.collapsible-body
+	form(name='newEmailForm' method='POST' action='/profile/changeEmail')
+		.row
+			.input-field.col.s12
+				input(name='newEmail' id='newEmail' type='email' required pattern='.{1,50}' title="Email can't be more than 50 characters")
+				label(for='newEmail') New email
+		.row
+			.input-field.col.s12
+				input(name='confirmNewEmail' id='confirmNewEmail' type='email' required pattern='.{1,50}' title="Email can't be more than 50 characters")
+				label(for='confirmNewEmail') Confirm new email
+		button.btn.waves-effect.waves-light(type='submit') Confirm

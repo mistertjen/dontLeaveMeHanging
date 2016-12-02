@@ -1,0 +1,48 @@
+// css for variables
+@font-face {
+    font-family: FFF-forward;
+    src: url(/stylesheets/fonts/FFFFORWA.TTF);
+}
+
+
+
+
+
+// global variables
+$title-font: FFF-forward;
+$primary-color: #24e5c8;
+$secondary-color: #066c5d;
+
+$HFAsk-color-light: #eaf2f2;
+$HFAsk-color: #d7ffff;
+$HFAask-color-dark: #87cbcb;
+
+$HFGive-color-light: #f6cbf0;
+$HFGive-color: #eb94de;
+$HFGive-color-dark: #bf45ad;
+
+$hover-color: #0a937f;
+
+
+
+
+
+// Include other sass modules here:
+@import 'success';
+@import 'login';
+@import 'navbar';
+@import 'index';
+
+@import 'profile';
+
+
+// Global css
+h1, h2, h3, h4, h5, h6 {
+	font-family: $title-font;
+	color: white;
+	text-shadow: 5px 5px 0px black;
+}
+
+body {
+	background-color: $primary-color;
+}

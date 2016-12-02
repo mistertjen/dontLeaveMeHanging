@@ -1,0 +1,86 @@
+#register-login {
+
+	.message {
+		color: $HFGive-color-dark
+	}
+
+	section {
+		margin-top: 40px;
+	}
+
+	.title {
+		line-height:2em;
+		letter-spacing: 3px;
+		font-size: 80px;
+		margin:0px;
+		margin-left:10.5px
+	}
+
+	h3 {
+		font-size: 35px;
+	}
+
+	input, label, button {
+		font-weight: bold;
+		letter-spacing: 1.8px;
+		font-size:14px;
+	}
+
+	button {
+		color:white;
+		// background-color: $primary-color;
+		background-color: $secondary-color;
+		box-shadow: 5px 5px 0px black;
+		&:hover {
+			// background-color: $secondary-color;
+			background-color: $hover-color;
+		}
+	}
+
+	.form-title {
+		margin-bottom: 30px;
+	}
+
+	.card {
+		border: 3px solid black;
+	}
+
+	.card-content {
+		padding: 15px;
+		.row {
+			margin-bottom:0px;
+		}
+	}
+
+	.hoverable:hover {
+		box-shadow: 7px 7px 0px $HFGive-color-dark;
+	}
+
+	.btn:hover {
+		// box-shadow: 5px 5px 0px $HFGive-color-dark;
+	}
+
+	@media screen and (max-height: 900px) {
+		.title {
+			font-size:70px;
+		}
+		h3 {
+			font-size: 30px;
+		}
+		.card-content {
+			padding: 12px;
+		}
+		input, label, button {
+			font-size:11px;
+		}
+	}
+
+	@media screen and (max-width: 600px) {
+		.title {
+			font-size:60px;
+		}
+		.form-container:last-child {
+			margin-top:40px;
+		}	
+	}
+}

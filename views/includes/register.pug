@@ -1,0 +1,28 @@
+h3.form-title Register
+.card.hoverable
+	.card-content
+		form(action='/register' method='POST')
+			//- required makes sure html will not submit (make post request to back end) when a field is empty
+			//- pattern that it isn't more than 255 characters
+			.row
+				.input-field.col.s12
+					input(name='name' id='register-name' type='text' required pattern='.{1,25}' title="Username can't be more than 25 characters")
+					label(for='register-name') Username
+			//- type makes sure html will not submit (make post request to back end) when a field gets the wrong type of input
+			.row
+				.input-field.col.s12
+					input(name='email' id='register-email' type='email' required pattern='.{1,50}' title="Email can't be more than 50 characters")
+					label(for='register-email') Email
+			//- pattern makes sure lentgh is at least 8
+			//- onchange that it matches confirmPassword
+			.row
+				.input-field.col.s12
+					input(name='password' id='register-password' type='password' pattern='.{8,255}' required onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Must have at least 8 characters' : ''); if(this.checkValidity()) form.confirmPassword.pattern = this.value;")
+					label(for='register-password') Password
+			//- pattern makes sure lentgh is at least 8
+			//- onchange that it matches confirmPassword
+			.row
+				.input-field.col.s12
+					input(name='confirmPassword' id='register-confirm-password' type='password' pattern='.{8,255}' required onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Please enter the same password' : '');")
+					label(for='register-confirm-password') Confirm password
+			button.btn.waves-effect.waves-light(type='submit') Register
