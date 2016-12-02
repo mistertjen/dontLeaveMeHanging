@@ -1,7 +1,15 @@
 body {
 
+	// to vertically center, materialize sticky footer trick
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+	// to vertically center
 	.container {
-		margin-top:30px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		flex: 1 0 auto;
 	}
 
 	.success {
@@ -50,5 +58,39 @@ body {
 
 	.hoverable:hover {
 		box-shadow: 10px 10px 0px $HFGive-color-dark;
+	}
+}
+
+@media screen and (max-width: 1500px) {
+	.success {
+		font-size: 60px !important;
+	}
+}
+
+@media screen and (max-width: 1250px) {
+	.success {
+		font-size: 40px !important;
+	}
+
+	body .card p#success-message {
+		font-size: 20px;
+	}
+
+	.btn-large {
+		font-size: 10px;
+	}
+}
+
+@media screen and (max-width: 700px) {
+	.row .col.m6 {
+		width: 100%
+	}
+
+	.row .col.m5.offset-m1 {
+		margin-left: 0;
+	}
+
+	.row .col.m6.offset-m1 {
+		margin-right: 0;
 	}
 }
