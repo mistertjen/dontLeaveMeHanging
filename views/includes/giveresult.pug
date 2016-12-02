@@ -1,11 +1,11 @@
-.card.hoverable
-	.card-content
-		//- if you don't have HFGives yet
-		if (giveResult == "You didn't give a high five yet.")
-			p #{giveResult}
+//- if you don't have HFGives yet
+if (giveResult == "You didn't give a high five yet.")
+	p #{giveResult}
 
-		//- if you have resolved HFGives, show each
-		else 
-			each hfgive in giveResult
-				- let message = `You left ${hfgive.HFAskName} from ${hfgive.HFAskLocation} hanging for: ${hfgive.HFTimeDifference.days} days, ${hfgive.HFTimeDifference.hours} hours, ${hfgive.HFTimeDifference.minutes} minutes, ${hfgive.HFTimeDifference.seconds} seconds. `
+//- if you have resolved HFGives, show each
+else 
+	each hfgive in giveResult
+		- let message = `You left ${hfgive.HFAskName} from ${hfgive.HFAskLocation} hanging for: ${hfgive.HFTimeDifference.days} days, ${hfgive.HFTimeDifference.hours} hours, ${hfgive.HFTimeDifference.minutes} minutes, ${hfgive.HFTimeDifference.seconds} seconds. `
+		.card.hoverable
+			.card-content
 				p.hf-history-element #{message}
