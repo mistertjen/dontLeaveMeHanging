@@ -4,6 +4,6 @@
 	form(name='newNameForm' method='POST' action='/profile/changeName')
 		.row
 			.input-field.col.s12
-				input(name='newName' id='newName' type='text')
+				input(name='newName' id='newName' type='text' pattern='.{1,25}' title="Email can't be more than 25 characters")
 				label(for='newName') New username
 		button.btn.waves-effect.waves-light(type='submit') Confirm
