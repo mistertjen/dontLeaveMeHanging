@@ -38,13 +38,16 @@ const locationFunc = {
 	submitLocation: (formId, userlocation) => { 
 		$(formId).submit(function () {
 			// append input to form in the post request so server can reach it
-		    $(this).append(function (location) {
-		        return   $('<input>', {
-		            type: 'hidden',
-		            name: 'location',
-		            value: userlocation
-		        })
-		    })
+			$(this).disabled = true
+			if ($(this)[0].length === 1) {
+			    $(this).append(function (location) {
+			        return   $('<input>', {
+			            type: 'hidden',
+			            name: 'location',
+			            value: userlocation
+			        })
+			    })
+			}
 		});
 	},
 	disableButton: (buttonId) => {

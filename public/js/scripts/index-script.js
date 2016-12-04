@@ -14,7 +14,7 @@ if($('#index').length > 0) {
 	
 	// Do the intial check and pass userlocation to be set on the button submit as soon as it's known.
 	checkFunc.buttonHFGive( userlocation => {
-		locationFunc.submitLocation('#hfgiveform', userlocation)	
+		locationFunc.submitLocation('#hfgiveform', userlocation)
 	})
 	checkFunc.buttonHFAsk( userlocation => {
 		locationFunc.submitLocation('#hfaskform', userlocation)

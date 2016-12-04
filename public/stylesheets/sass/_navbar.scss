@@ -1,10 +1,6 @@
-nav {
+#nav {
 	background-color: $secondary-color;
 	box-shadow: 5px 5px 0px black;
-
-	.active {
-		background-color: $hover-color;
-	}
 	
 	ul {
 		a {
