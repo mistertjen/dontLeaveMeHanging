@@ -62,45 +62,49 @@ HFGive.belongsTo(User)
 HFGive.hasOne(HFAsk)
 HFAsk.belongsTo(HFGive)
 
+// development build
 // {force: true}: so all tables in db are deleted
-db.sync({force:true}).then(() => {
-	console.log("Database synced")
-	//test data
-	User.create({
-		name: "Freddie Mercury",
-		email: "bohemian@rhapsody.com",
-		password: "dontstopmenow",
-		hfasks: [{
-			username: "Freddie Mercury",
-			location: "Barcelona"
-		}] 
-	}, 
-		// option object
-		{
-		include: [HFAsk]
-	})
-	// // extra test data
-	// .then( x => {
-	// 	return HFAsk.findById(1)
-	// })
-	// .then (HFAsk => {
-	// 	HFAsk.update({
-	// 		hfgiveId: 1
-	// 	})
-	// })
-	// User.create({
-	// 	name: "Timothy Blob",
-	// 	email: "xxx@rhapsody.com",
-	// 	password: "skalmlamk",
-	// 	hfgives: [{
-	// 		location: "Amsterdam"
-	// 	}] 
-	// }, 
-	// 	// option object
-	// 	{
-	// 	include: [HFGive]
-	// })
-})
+// db.sync({force:true}).then(() => {
+// 	console.log("Database synced")
+// 	//test data
+// 	User.create({
+// 		name: "Freddie Mercury",
+// 		email: "bohemian@rhapsody.com",
+// 		password: "dontstopmenow",
+// 		hfasks: [{
+// 			username: "Freddie Mercury",
+// 			location: "Barcelona"
+// 		}] 
+// 	}, 
+// 		// option object
+// 		{
+// 		include: [HFAsk]
+// 	})
+// 	// // extra test data
+// 	// .then( x => {
+// 	// 	return HFAsk.findById(1)
+// 	// })
+// 	// .then (HFAsk => {
+// 	// 	HFAsk.update({
+// 	// 		hfgiveId: 1
+// 	// 	})
+// 	// })
+// 	// User.create({
+// 	// 	name: "Timothy Blob",
+// 	// 	email: "xxx@rhapsody.com",
+// 	// 	password: "skalmlamk",
+// 	// 	hfgives: [{
+// 	// 		location: "Amsterdam"
+// 	// 	}] 
+// 	// }, 
+// 	// 	// option object
+// 	// 	{
+// 	// 	include: [HFGive]
+// 	// })
+// })
+
+// production build
+db.sync()
 
 // by requiring database.js the code runs one time, by sending User, HFAsk, HFGive in an object you can access and create a user and high fives in routes
 // for example: db.User.create
