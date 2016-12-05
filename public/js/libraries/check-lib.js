@@ -11,7 +11,7 @@ const checkFunc = {
 		// console.log('i work every 2 secs')
 		$.get('/canhfgive', (data) => {
 			// console logt data so true or false
-			console.log("buttonHFGive: " + data)
+			// console.log("buttonHFGive: " + data)
 			// if there is one hanging unmatched
 			if(data) {
 				// get location, with a callback, which is a function
@@ -30,7 +30,7 @@ const checkFunc = {
 				locationFunc.disableButton('hfgivebutton')
 				let buttonString = `Nobody's hanging atm`
 				target.html(buttonString)
-				if (typeof callback === 'function') callback(userlocation)
+				if (typeof callback === 'function') callback()
 			}
 		})
 	},
@@ -41,7 +41,7 @@ const checkFunc = {
 		// console.log('i work every 2 secs')
 		$.get('/canhfask', (data) => {
 			// console logt data so true or false
-			console.log("buttonHFAsk: " + data)
+			// console.log("buttonHFAsk: " + data)
 			// if there is one hanging unmatched
 			if(data) {
 				// get location, with a callback, which is a function
@@ -58,7 +58,7 @@ const checkFunc = {
 			} else {
 				// disable button
 				locationFunc.disableButton('hfaskbutton')
-				if (typeof callback === 'function') callback(userlocation)
+				if (typeof callback === 'function') callback()
 			}
 		})
 	}

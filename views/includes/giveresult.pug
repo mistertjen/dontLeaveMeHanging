@@ -1,6 +1,8 @@
 //- if you don't have HFGives yet
 if (giveResult == "You didn't give a high five yet.")
-	p #{giveResult}
+	.card.hoverable
+		.card-content
+			p #{giveResult}
 
 //- if you have resolved HFGives, show each
 else 

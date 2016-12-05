@@ -1,6 +1,8 @@
 //- if you don't have HFAsks that are resolved yet
 if (askResult == "You didn't receive a high five yet.")
-	p #{askResult}
+	.card.hoverable
+		.card-content
+			p #{askResult}
 
 //- if you have HFAsks that are resolved, show each
 else 
