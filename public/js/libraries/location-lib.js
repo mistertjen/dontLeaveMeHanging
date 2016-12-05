@@ -37,9 +37,11 @@ const locationFunc = {
 	// submit location to post request
 	submitLocation: (formId, userlocation) => { 
 		$(formId).submit(function () {
-			// append input to form in the post request so server can reach it
+			// disable button on click, so the script only runs once.
 			$(this).disabled = true
+			// script checks if form length === 1 (so no hidden input field added), then adds it. So cannot add if already added.
 			if ($(this)[0].length === 1) {
+				// append input to form in the post request so server can reach it				
 			    $(this).append(function (location) {
 			        return   $('<input>', {
 			            type: 'hidden',
